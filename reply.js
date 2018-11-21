@@ -158,9 +158,9 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("panthers", msg.text)){
         if(Math.random() > .5){
-            createMessageObject(msg.roomId, "cam newton is bae", ["https://media1.giphy.com/media/l0MYGBjieOAC0hFzG/200w.webp?cid=3640f6095bf5b9a1384d2e78733b1dd8"]);
+            createMessageObject(msg.roomId, "cam newton is bae", ["https://media.giphy.com/media/l0MYGBjieOAC0hFzG/giphy.gif"]);
         } else {
-            createMessageObject(msg.roomId, "we going to the super bowl bois", ["https://media1.giphy.com/media/Qw7kp97PWrgNW/200.webp?cid=3640f6095bf5b9d979706c486fa90787"]);
+            createMessageObject(msg.roomId, "we going to the super bowl bois", ["https://media.giphy.com/media/Qw7kp97PWrgNW/giphy.gif"]);
         }
     }
 
