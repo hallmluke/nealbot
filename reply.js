@@ -17,14 +17,14 @@ module.exports = function createReply(msg) {
         messages.push("fuck the saints");
     }
 
-    if(Math.random() > .7){
+    if(Math.random() > .4){
         if(Math.random() > .5){
             var lmao = "lmao";
         } else {
             var lmao = "lmfao"
         }
         var os = getRandomInt(4);
-        for(i in os){
+        for(var i=0; i<os; i++){
             lmao = lmao + 'o';
         }
         messages.push(lmao);
