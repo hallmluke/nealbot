@@ -11,8 +11,10 @@ var getRandomInt = function(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-var createMessageObject = function(roomId, text, html) {
+var createMessageObject = function(roomId, text) {
+    
     console.log("in create message object");
+    var message = {};
     message.roomId = roomId;
     message.text = text;
     console.log("message: " +  message);
