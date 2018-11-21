@@ -17,7 +17,7 @@ spark.on('messages-created', (msg) => {
         roomId: msg.roomId,
         test: 'lmao'
     }
-    spark.messageSend(returnMessage);
+    spark.messageSend(returnMessage, null).then(message => console.log(message.id)).catch(err => console.error(err));
 });
  
 const app = express();
