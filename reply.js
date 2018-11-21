@@ -1,4 +1,5 @@
 snoowrap = require('snoowrap');
+const redditscrape = require('./redditscraper');
 
 var messages = [];
 
@@ -187,6 +188,10 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "orange justice up in this bitch", ['https://media.giphy.com/media/8mkylSWajoh7QBCz5j/giphy.gif']);
     }
 
+    if(matchWordRegex("reddit", msg.text)){
+        createMessageObject(msg.roomId, redditscrape());
+    }
+
     if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
         var stfu = "Tom shut ";
         if(Math.random() > .75){
@@ -292,6 +297,10 @@ module.exports = function createReply(msg) {
 
     if(Math.random() > .95){
         createMessageObject(msg.roomId, "imma take a fat nap");
+    }
+
+    if(messages.length == 0){
+        createMessageObject(msg.roomId, "lol");
     }
 
     if(matchWordRegex("caleb", msg.personEmail)){
