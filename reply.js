@@ -30,11 +30,8 @@ const gifBotEmail = "gifbot@webex.bot";
 
 
 module.exports = function createReply(msg) {
-    var returnMessage = {
-        roomId: "",
-        text: "",
-    }
-    returnMessage.roomId = msg.roomId;
+    messages = [];
+
     if(matchWordRegex("what good are you")){
         text = "I respond to the following prompts\n" + 
         "Banks asking me about my stories\n" + 
