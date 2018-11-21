@@ -7,6 +7,53 @@ var matchWordRegex = function(word, text){
     return regexp.test(text);
 }
 
+var getBodyPart = function() {
+    int = getRandomInt(6);
+    part = null;
+    switch(int) {
+        case 0:
+            part = "arm"
+            break;
+        case 1:
+            part = "back"
+            break;
+        case 2:
+            part = "shoulder"
+            break;
+        case 3:
+            part = "knee"
+            break;
+        case 4:
+            part = "neck"
+            break;
+        case 5:
+            part = "ribs"
+            break;
+        default:
+            part = "leg"
+    }
+    return part;
+}
+
+var getActivity = function() {
+    int = getRandomInt(3);
+    activity = null;
+    switch(int) {
+        case 0:
+            part = "at kickball"
+            break;
+        case 1:
+            part = "drinking"
+            break;
+        case 2:
+            part = "at work"
+            break;
+        default:
+            part = "playing soccer"
+    }
+    return part;
+}
+
 var getRandomInt = function(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
@@ -118,6 +165,27 @@ module.exports = function createReply(msg) {
         }
         psl = psl + "!"
         createMessageObject(msg.roomId, psl)
+    }
+    if(matchWordRegex("you okay", msg.text) || matchWordRegex("feeling alright", msg.text) || matchWordRegex("hurt")) {
+        var hurt = null;
+        if(Math.random() > .1) {    
+            hurt = "nah fam hurt my "
+            hurt = hurt + getBodyPart();
+            hurt = hurt + " ";
+            hurt = hurt + getActivity();
+            hurt = hurt + " last night";
+            if(Math.random() > .9) {
+                hurt = hurt + ". its pretty bad, might take tomorrow off";
+            }
+        }
+        else {
+            hurt = "yeah im alright"
+            if(Math.random() > .7) {
+                hurt = hurt + ". thanks for asking";
+            }
+        }
+        createMessageObject(msg.roomId, hurt);
+
     }
     if(matchWordRegex("dynamo", msg.text) || matchWordRegex("database", msg.text)) {
         dynamo = "id";
