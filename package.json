@@ -1,0 +1,25 @@
+{
+  "name": "nealbot",
+  "version": "1.0.0",
+  "description": "Mild alcoholic.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hallmluke/nealbot.git"
+  },
+  "author": "Luke Hall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hallmluke/nealbot/issues"
+  },
+  "homepage": "https://github.com/hallmluke/nealbot#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "node-sparky": "^4.6.0",
+    "when": "^3.7.8"
+  }
+}
