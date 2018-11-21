@@ -7,7 +7,7 @@ var matchWordRegex = function(word, text){
     return regexp.test(text);
 }
 
-var a = ['zero','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+var a = ['zero','one','two','three','four', 'five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
 
 function intToString (num) {
     return a[num];
@@ -143,7 +143,7 @@ module.exports = function createReply(msg) {
             drinks = drinks + ". its lit fam"
         }
         if(int >= 6) {
-            drinks = drinks + "\n. yeah I don't feel so good"
+            drinks = drinks + ".\n yeah I don't feel so good"
         }
         createMessageObject(msg.roomId, drinks);
     }
