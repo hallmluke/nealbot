@@ -59,7 +59,7 @@ var getRandomInt = function(max) {
 }
 
 var createMessageObject = function(roomId, text, files) {
-    
+
     console.log("in create message object");
     var message = {};
     message.roomId = roomId;
@@ -83,20 +83,30 @@ module.exports = function createReply(msg) {
     messages = [];
 
     if(matchWordRegex("what good are you", msg.text)){
-        text = "I respond to the following prompts\n" + 
-        "Banks asking me about my stories\n" + 
-        "My favorite football team, the Saints\n" + 
-        "Some annoying guy says something\n" + 
-        "Being asked how to do anything\n\n" + 
+        text = "I respond to the following prompts\n" +
+        "Banks asking me about my stories\n" +
+        "My favorite football team, the Saints\n" +
+        "Some annoying guy says something\n" +
+        "Being asked how to do anything\n\n" +
         "Also, I'll just say lmao a lot.  I also like naps";
         createMessageObject(msg.roomId, text);
-        
+
     }
-    if(matchWordRegex("banks", msg.personEmail) && (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text))){
-        text = "Those stories should be done by the end of the day";
-        createMessageObject(msg.roomId, text);
+    if(matchWordRegex("banks", msg.personEmail)) {
+       if (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text)) {
+           text = "Those stories should be done by the end of the day";
+           createMessageObject(msg.roomId, text);
+       }
+       if (matchWordRegex("new job", msg.text)) {
+            text = "Whatever. I've had a clearance since I was 16. I'll be fine.";
+            createMessageObject(msg.roomId, text);
+       }
+       if (matchWordRegex("are you done", msg.text)) {
+           text = "Not yet. @ me if you fine fellows need anything. I'm just going to be knocking out stories.";
+           createMessageObject(msg.roomId, text);
+       }
     }
-    console.log("Saints? " + matchWordRegex("saints", msg.text));
+
     if(matchWordRegex("saints", msg.text)){
         createMessageObject(msg.roomId, "fuck the saints");
     }
@@ -130,7 +140,7 @@ module.exports = function createReply(msg) {
         billsReturnMessage.mentionedPeople = [gifBotId];
         billsReturnMessage.text = "GifBot buffalo bills";
         billsReturnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"" + gifBotId + "\">GifBot</spark-mention> buffalo bills",
-        
+
         //returnMessage.markdown = "<@personEmail:" + gifBotEmail + "|GifBot> " + "buffalo bills";
         //delete returnMessage["text"];
         messages.push(billsReturnMessage);
@@ -145,7 +155,7 @@ module.exports = function createReply(msg) {
     }
     if(matchWordRegex("how about", msg.text) || matchWordRegex("want to", msg.text) || matchWordRegex("how bout")) {
         var bet = "aight";
-        if(Math.random > .05) {
+        if(Math.random() > .05) {
             bet = bet + " bet";
         }
         bet = bet + " im in";
@@ -232,7 +242,7 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "imma take a fat nap");
     }
 
-    if(matchWordRegex("hall", msg.personEmail)){
+    if(matchWordRegex("caleb", msg.personEmail)){
         for(i in messages){
             messages[i].text = messages[i].text + " traitor";
         }
