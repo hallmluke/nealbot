@@ -11,6 +11,16 @@ var getRandomInt = function(max) {
 
 module.exports = function createReply(msg) {
     var messages = [];
+    if(matchWordRegex("what good are you")){
+        messages.push("I respond to the following prompts\n" + 
+        "Banks asking me about my stories\n" + 
+        "My favorite football team, the Saints\n" + 
+        "Some annoying guy says something\n" + 
+        "Being asked how to do anything\n\n" + 
+        "Also, I'll just say lmao a lot.  I also like naps"
+        );
+        
+    }
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
         messages.push("Those stories should be done by the end of the day");
     }
