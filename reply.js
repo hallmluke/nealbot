@@ -32,7 +32,7 @@ const gifBotEmail = "gifbot@webex.bot";
 module.exports = function createReply(msg) {
     messages = [];
 
-    if(matchWordRegex("what good are you")){
+    if(matchWordRegex("what good are you", msg.text)){
         text = "I respond to the following prompts\n" + 
         "Banks asking me about my stories\n" + 
         "My favorite football team, the Saints\n" + 
@@ -42,7 +42,7 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, text);
         
     }
-    if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
+    if(matchWordRegex("banks", msg.personEmail) && (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text))){
         text = "Those stories should be done by the end of the day";
         createMessageObject(msg.roomId, text);
     }
@@ -56,12 +56,19 @@ module.exports = function createReply(msg) {
     }
 
     if(matchWordRegex("ice cream", msg.text)){
-        text = "when the fuck did we get ice cream?"
+        text = "when the fuck did we get ice cream?";
         createMessageObject(msg.roomId, text);
     }
 
     if(matchWordRegex("kickball", msg.text)){
-        
+        createMessageObject(msg.roomId, "yo luke when is the game tonight");
+        if(Math.random() > .5){
+            createMessageObject(msg.roomId, "bout to do hella jello shots");
+        }
+    }
+
+    if(matchWordRegex("happy hour", msg.text) || matchWordRegex("drink", msg.text) || matchWordRegex("drunk", msg.text)){
+        createMessageObject(msg.roomId, "ayyyeee lets get lit");
     }
 
     /*if(matchWordRegex("bills", msg.text)){
