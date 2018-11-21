@@ -21,6 +21,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "node-sparky": "^4.6.0",
+    "snoowrap": "^1.15.2",
     "when": "^3.7.8"
   }
 }

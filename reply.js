@@ -1,3 +1,5 @@
+snoowrap = require('snoowrap');
+
 var matchWordRegex = function(word, text){
     var regexp = new RegExp(word, 'i');
     return regexp.test(text);
@@ -20,6 +22,16 @@ module.exports = function createReply(msg) {
     }
     var messages = [];
     returnMessage.roomId = msg.roomId;
+    if(matchWordRegex("what good are you")){
+        messages.push("I respond to the following prompts\n" + 
+        "Banks asking me about my stories\n" + 
+        "My favorite football team, the Saints\n" + 
+        "Some annoying guy says something\n" + 
+        "Being asked how to do anything\n\n" + 
+        "Also, I'll just say lmao a lot.  I also like naps"
+        );
+        
+    }
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
         returnMessage.text = "Those stories should be done by the end of the day";
         messages.push(returnMessage);
@@ -49,7 +61,25 @@ module.exports = function createReply(msg) {
         //delete returnMessage["text"];
         messages.push(returnMessage);
     }
-
+    if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
+        var stfu = "Tom shut ";
+        if(Math.random() > .75){
+            stfu = stfu + "the fuck "
+        }
+        stfu = stfu + "up!"
+        messages.push(stfu);
+    }
+    if(matchWordRegex("how do", msg.text)){
+        var idk = "id";
+        if(Math.random > .6){
+            idk + idk + "f";
+        }
+        idk = idk + "k, ask Sam";
+        if(Math.random > .3){
+            idk = idk + " or some shit";
+        }
+        messages.push(idk);
+    }
     if(Math.random() > .4){
         if(Math.random() > .5){
             var lmao = "lmao";
