@@ -134,9 +134,7 @@ module.exports = function createReply(msg) {
     }
     if(matchWordRegex("how much did you", msg.text)){
         int = 19 - Math.floor(Math.log(getRandomInt(8886105)+1));
-        console.log(int);
         wordInt = intToString(int);
-        console.log(wordInt);
 
         drinks = "boi I had " + wordInt + " bevs last night";
         if(Math.random() > .7) {
@@ -159,9 +157,9 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("panthers", msg.text)){
         if(Math.random() > .5){
-            createMessageObject(msg.roomId, "cam newton is bae");
+            createMessageObject(msg.roomId, "cam newton is bae", ["https://media1.giphy.com/media/l0MYGBjieOAC0hFzG/200w.webp?cid=3640f6095bf5b9a1384d2e78733b1dd8"]);
         } else {
-            createMessageObject(msg.roomId, "we going to the super bowl bois");
+            createMessageObject(msg.roomId, "we going to the super bowl bois", ["https://media1.giphy.com/media/Qw7kp97PWrgNW/200.webp?cid=3640f6095bf5b9d979706c486fa90787"]);
         }
     }
 
@@ -269,7 +267,8 @@ module.exports = function createReply(msg) {
         }
         createMessageObject(msg.roomId, idk);
     }
-    if(Math.random() > .4){
+    generic = Math.random();
+    if(generic > .8){
         if(Math.random() > .5){
             var lmao = "lmao";
         } else {
@@ -280,6 +279,15 @@ module.exports = function createReply(msg) {
             lmao = lmao + 'o';
         }
         createMessageObject(msg.roomId, lmao);
+    }
+    else if(generic > .6){
+        createMessageObject(msg.roomId, "yeet");
+    }
+    else if(generic > .5){
+        createMessageObject(msg.roomId, "shut the fuck up");
+    }
+    else if(generic > .4){
+        createMessageObject(msg.roomId, "stfu");
     }
 
     if(Math.random() > .95){
