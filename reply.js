@@ -8,6 +8,12 @@ var matchWordRegex = function(word, text){
     return regexp.test(text);
 }
 
+var a = ['zero','one','two','three','four', 'five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+
+function intToString (num) {
+    return a[num];
+}
+
 var getBodyPart = function() {
     int = getRandomInt(6);
     part = null;
@@ -83,15 +89,31 @@ const gifBotEmail = "gifbot@webex.bot";
 module.exports = function createReply(msg) {
     messages = [];
 
-    if(matchWordRegex("what good are you", msg.text)){
-        text = "I respond to the following prompts\n" +
+    if(matchWordRegex("help", msg.text)){
+        text = "I respond to the following prompts by way of keyword.  I won't tell you them though, because that'd mean being helpful\n" +
         "Banks asking me about my stories\n" +
         "My favorite football team, the Saints\n" +
-        "Some annoying guy says something\n" +
-        "Being asked how to do anything\n\n" +
+        "My casual alcoholism\n" +
+        "Getting a cold snack\n" + 
+        "My favorite first-person shooter, Fortnite\n" +
+        "Going somewhere\n" + 
+        "Getting something to drink\n" + 
+        "How to talk to a database"
+        "How to do anything\n\n" +
         "Also, I'll just say lmao a lot.  I also like naps";
         createMessageObject(msg.roomId, text);
 
+    }
+    if(matchWordRegex("patrick_walter", msg.personemail)) {
+        if (matchWordRegex("stfu", msg.text) || matchWordRegex("shut the fuck up") || matchWordRegex("shut up")) {
+            createMessageObject(msg.roomId, "woah Walter, calm down.  Let's keep the language to a minimum");
+        }
+        if (matchWordRegex("who are you") || matchWordRegex("what is this")) {
+            createMessageObject(msg.roomId, "I'm you but without the beard");
+        }
+        if(matchWordRegex("why is this a thing")) {
+            createMessageObject(msg.roomId, "It's just a prank bro.");
+        }
     }
     if(matchWordRegex("banks", msg.personEmail)) {
        if (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text)) {
@@ -106,7 +128,27 @@ module.exports = function createReply(msg) {
            text = "Not yet. @ me if you fine fellows need anything. I'm just going to be knocking out stories.";
            createMessageObject(msg.roomId, text);
        }
+       if (matchWordRegex("document", msg.text)) {
+           text = "Ive got it in a word doc, Ill move it over once Im done"
+           createMessageObject(msg.roomId, text);
+       }
     }
+    if(matchWordRegex("how much did you", msg.text)){
+        int = 19 - Math.floor(Math.log(getRandomInt(8886105)+1));
+        console.log(int);
+        wordInt = intToString(int);
+        console.log(wordInt);
+
+        drinks = "boi I had " + wordInt + " bevs last night";
+        if(Math.random() > .7) {
+            drinks = drinks + ". its lit fam"
+        }
+        if(int >= 6) {
+            drinks = drinks + ".\n yeah I don't feel so good"
+        }
+        createMessageObject(msg.roomId, drinks);
+    }
+
 
     if(matchWordRegex("saints", msg.text)){
         createMessageObject(msg.roomId, "fuck the saints");
@@ -140,7 +182,7 @@ module.exports = function createReply(msg) {
         }
     }
 
-    if(matchWordRegex("happy hour", msg.text) || matchWordRegex("drink", msg.text) || matchWordRegex("drunk", msg.text)){
+    if(matchWordRegex("happy hour", msg.text) || matchWordRegex("go drink", msg.text) || matchWordRegex("drunk", msg.text)){
         createMessageObject(msg.roomId, "ayyyeee lets get lit");
     }
 
