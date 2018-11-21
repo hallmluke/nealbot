@@ -11,7 +11,9 @@ const spark = new Spark({
 const port = parseInt(process.env.PORT || '3000', 10);
  
 // add events
-spark.on('messages-created', msg => console.log(`${msg.personEmail} said: ${msg.text}`));
+spark.on('messages-created', (msg) => {
+    console.log(JSON.stringify(msg, null, 4))
+});
  
 const app = express();
 app.use(bodyParser.json());
