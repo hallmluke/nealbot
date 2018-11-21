@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const when = require('when');
  
 const spark = new Spark({
-  token: '<my token>',
-  webhookSecret: 'somesecr3t',
+  token: 'MDZkYWUwMzEtMjA2OS00ZjMzLTg3MWUtZTE5OGMxY2I0NDc2NjU1Zjg0NzctMTAw',
+  webhookSecret: 'nealsmells',
 });
  
 const port = parseInt(process.env.PORT || '3000', 10);
