@@ -19,7 +19,7 @@ spark.on('messages-created', (msg) => {
     console.log("Return Messages: " + returnMessages);
     if(msg.personEmail != "nealbot@webex.bot") {
         console.log("not the bot");
-        for(i in returnMesages){
+        for(i in returnMessages){
             console.log("in the for loop");
             var returnMessage = {
                 roomId: msg.roomId,
