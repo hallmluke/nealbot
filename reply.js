@@ -98,7 +98,7 @@ module.exports = function createReply(msg) {
     }
     if(matchWordRegex("how about", msg.text) || matchWordRegex("want to", msg.text) || matchWordRegex("how bout")) {
         var bet = "aight";
-        if(Math.random > .05) {
+        if(Math.random() > .05) {
             bet = bet + " bet";
         }
         bet = bet + " im in";
@@ -147,7 +147,7 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "imma take a fat nap");
     }
 
-    if(matchWordRegex("hall", msg.personEmail)){
+    if(matchWordRegex("caleb", msg.personEmail)){
         for(i in messages){
             messages[i].text = messages[i].text + " traitor";
         }
