@@ -23,43 +23,43 @@ module.exports = function createReply(msg) {
     var messages = [];
     returnMessage.roomId = msg.roomId;
     if(matchWordRegex("what good are you")){
-        returnMessage.text = "I respond to the following prompts\n" + 
+        helpReturnMessage.text = "I respond to the following prompts\n" + 
         "Banks asking me about my stories\n" + 
         "My favorite football team, the Saints\n" + 
         "Some annoying guy says something\n" + 
         "Being asked how to do anything\n\n" + 
         "Also, I'll just say lmao a lot.  I also like naps";
-        messages.push(returnMessage);
+        messages.push(helpReturnMessage);
         
     }
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
-        returnMessage.text = "Those stories should be done by the end of the day";
-        messages.push(returnMessage);
+        bankReturnMessage.text = "Those stories should be done by the end of the day";
+        messages.push(banksReturnMessage);
     }
     console.log("Saints? " + matchWordRegex("saints", msg.text));
     if(matchWordRegex("saints", msg.text)){
-        returnMessage.text = "fuck the saints";
-        messages.push(returnMessage);
+        saintsReturnMessage.text = "fuck the saints";
+        messages.push(saintsReturnMessage);
     }
 
     if(matchWordRegex("packers", msg.text)){
-        returnMessage.text = "packers suck";
-        messages.push(returnMessage);
+        packersReturnMessage.text = "packers suck";
+        messages.push(packersReturnMessage);
     }
 
     if(matchWordRegex("ice cream", msg.text)){
-        returnMessage.text = "when the fuck did we get ice cream?"
-        messages.push(returnMessage);
+        iceCreamReturnMessage.text = "when the fuck did we get ice cream?"
+        messages.push(iceCreamReturnMessage);
     }
 
     if(matchWordRegex("bills", msg.text)){
-        returnMessage.mentionedPeople = [gifBotId];
-        returnMessage.text = "GifBot buffalo bills";
-        returnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"" + gifBotId + "\">GifBot</spark-mention> buffalo bills",
+        billsReturnMessage.mentionedPeople = [gifBotId];
+        billsReturnMessage.text = "GifBot buffalo bills";
+        billsReturnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"" + gifBotId + "\">GifBot</spark-mention> buffalo bills",
         
         //returnMessage.markdown = "<@personEmail:" + gifBotEmail + "|GifBot> " + "buffalo bills";
         //delete returnMessage["text"];
-        messages.push(returnMessage);
+        messages.push(billsReturnMessage);
     }
     if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
         var stfu = "Tom shut ";
@@ -67,8 +67,8 @@ module.exports = function createReply(msg) {
             stfu = stfu + "the fuck "
         }
         stfu = stfu + "up!"
-        returnMessage.text = stfu;
-        messages.push(returnMessage);
+        stfuReturnMessage.text = stfu;
+        messages.push(stfuReturnMessage);
     }
     if(matchWordRegex("how do", msg.text)){
         var idk = "id";
@@ -79,8 +79,8 @@ module.exports = function createReply(msg) {
         if(Math.random > .3){
             idk = idk + " or some shit";
         }
-        returnMessage.text = idk;
-        messages.push(returnMessage);
+        idkReturnMessage.text = idk;
+        messages.push(idkReturnMessage);
     }
     if(Math.random() > .4){
         if(Math.random() > .5){
@@ -92,13 +92,13 @@ module.exports = function createReply(msg) {
         for(var i=0; i<os; i++){
             lmao = lmao + 'o';
         }
-        returnMessage.text = lmao;
-        messages.push(returnMessage);
+        lmaoReturnMessage.text = lmao;
+        messages.push(lmaoReturnMessage);
     }
 
     if(Math.random() > .95){
-        returnMessage.text = "imma take a fat nap"
-        messages.push(returnMessage);
+        napReturnMessage.text = "imma take a fat nap"
+        messages.push(napReturnMessage);
     }
 
     if(matchWordRegex("caleb", msg.personEmail)){
