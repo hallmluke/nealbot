@@ -115,6 +115,18 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "packers suck");
     }
 
+    if(matchWordRegex("panthers", msg.text)){
+        if(Math.random() > .5){
+            createMessageObject(msg.roomId, "cam newton is bae");
+        } else {
+            createMessageObject(msg.roomId, "we going to the super bowl bois");
+        }
+    }
+
+    if(matchWordRegex("bills", msg.text)){
+        createMessageObject(msg.roomId, "breaking tables bitches", ['https://media.giphy.com/media/l0CPbwUg1rgOmMcb6/giphy.gif']);
+    }
+
     if(matchWordRegex("ice cream", msg.text)){
         text = "when the fuck did we get ice cream?";
         createMessageObject(msg.roomId, text);
@@ -135,16 +147,6 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "orange justice up in this bitch", ['https://media.giphy.com/media/8mkylSWajoh7QBCz5j/giphy.gif']);
     }
 
-    /*if(matchWordRegex("bills", msg.text)){
-        billsReturnMessage.roomId = msg.roomId;
-        billsReturnMessage.mentionedPeople = [gifBotId];
-        billsReturnMessage.text = "GifBot buffalo bills";
-        billsReturnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"" + gifBotId + "\">GifBot</spark-mention> buffalo bills",
-
-        //returnMessage.markdown = "<@personEmail:" + gifBotEmail + "|GifBot> " + "buffalo bills";
-        //delete returnMessage["text"];
-        messages.push(billsReturnMessage);
-    }*/
     if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
         var stfu = "Tom shut ";
         if(Math.random() > .75){
