@@ -6,8 +6,8 @@ var getRandomInt = function(max) {
 
 module.exports = function init(spark){
     j.cancel();
-    var time = getRandomInt(59);
-    j = schedule.scheduleJob(time + ' * * * * *', function(){
+    var lunchtime = getRandomInt(59);
+    j = schedule.scheduleJob(lunchtime + ' 13 * * *', function(){
         spark.roomsGet({ type: 'group' }, 10)
         .then(rooms => rooms.forEach(room => spark.messageSend({
             roomId: room.id,
