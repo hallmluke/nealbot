@@ -97,15 +97,31 @@ const gifBotEmail = "gifbot@webex.bot";
 module.exports = function createReply(msg) {
     messages = [];
 
-    if(matchWordRegex("what good are you", msg.text)){
-        text = "I respond to the following prompts\n" +
+    if(matchWordRegex("help", msg.text)){
+        text = "I respond to the following prompts by way of keyword.  I won't tell you them though, because that'd mean being helpful\n" +
         "Banks asking me about my stories\n" +
         "My favorite football team, the Saints\n" +
-        "Some annoying guy says something\n" +
-        "Being asked how to do anything\n\n" +
+        "My casual alcoholism\n" +
+        "Getting a cold snack\n" + 
+        "My favorite first-person shooter, Fortnite\n" +
+        "Going somewhere\n" + 
+        "Getting something to drink\n" + 
+        "How to talk to a database"
+        "How to do anything\n\n" +
         "Also, I'll just say lmao a lot.  I also like naps";
         createMessageObject(msg.roomId, text);
 
+    }
+    if(matchWordRegex("patrick_walter", msg.personemail)) {
+        if (matchWordRegex("stfu", msg.text) || matchWordRegex("shut the fuck up") || matchWordRegex("shut up")) {
+            createMessageObject(msg.roomId, "woah Walter, calm down.  Let's keep the language to a minimum");
+        }
+        if (matchWordRegex("who are you") || matchWordRegex("what is this")) {
+            createMessageObject(msg.roomId, "I'm you but without the beard");
+        }
+        if(matchWordRegex("why is this a thing")) {
+            createMessageObject(msg.roomId, "It's just a prank bro.");
+        }
     }
     if(matchWordRegex("banks", msg.personEmail)) {
        if (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text)) {
@@ -134,7 +150,7 @@ module.exports = function createReply(msg) {
             drinks = drinks + ". its lit fam"
         }
         if(int >= 6) {
-            drinks = drinks + "\nyeah I don't feel so good"
+            drinks = drinks + "\n. yeah I don't feel so good"
         }
         createMessageObject(msg.roomId, drinks);
     }
