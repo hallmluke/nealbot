@@ -119,6 +119,23 @@ module.exports = function createReply(msg) {
         psl = psl + "!"
         createMessageObject(msg.roomId, psl)
     }
+    if(matchWordRegex("dynamo", msg.text) || matchWordRegex("database", msg.text)) {
+        dynamo = "id";
+        if(Math.random() > .6) {
+            dynamo = dynamo + "f"
+        }
+        dynamo = dynamo + "k ask Tom"
+        if(Math.random() > .4) {
+            dynamo = dynamo + " hes our Dynamo"
+            if(Math.random() > .5) {
+                dynamo = dynamo + " guy"
+            }
+            else {
+                dynamo = dynamo + " expert"
+            }
+        }
+        createMessageObject(msg.roomId, dynamo);
+    }
     if(matchWordRegex("how do", msg.text)){
         var idk = "id";
         if(Math.random > .6){
