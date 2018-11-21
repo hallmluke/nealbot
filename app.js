@@ -2,6 +2,7 @@ const Spark = require('node-sparky');
 const express = require('express');
 const bodyParser = require('body-parser');
 const when = require('when');
+const botId = 'Y2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OLzViMjYwNWZjLTEwMDgtNGNmOS1iNjIxLWI3OTFhY2U5NzI1MQ';
  
 const spark = new Spark({
   token: 'MDZkYWUwMzEtMjA2OS00ZjMzLTg3MWUtZTE5OGMxY2I0NDc2NjU1Zjg0NzctMTAw',
@@ -17,7 +18,9 @@ spark.on('messages-created', (msg) => {
         roomId: msg.roomId,
         text: 'lmao'
     }
-    //spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
+    if(msg.personId != botId) {
+        spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
+    }
 });
  
 const app = express();
