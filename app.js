@@ -19,7 +19,7 @@ spark.on('messages-created', (msg) => {
         text: 'lmao'
     }
     if(msg.personId != botId) {
-        spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
+        //spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
     }
 });
  
