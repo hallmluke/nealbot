@@ -5,6 +5,7 @@ const when = require('when');
 const botId = 'Y2lzY29zcGFyazovL3VzL0FQUExJQ0FUSU9OLzViMjYwNWZjLTEwMDgtNGNmOS1iNjIxLWI3OTFhY2U5NzI1MQ';
 const reply = require('./reply');
 const scheduled = require('./schedulemessage');
+const scheduler = require('node-schedule');
 
 const spark = new Spark({
   token: 'MDZkYWUwMzEtMjA2OS00ZjMzLTg3MWUtZTE5OGMxY2I0NDc2NjU1Zjg0NzctMTAw',
@@ -12,6 +13,11 @@ const spark = new Spark({
 });
 
 scheduled(spark);
+
+var dailyReset = scheduler.scheduleJob('* 1 * * *', function() {
+  scheduled(spark);
+})
+
  
 const port = parseInt(process.env.PORT || '3000', 10);
  
