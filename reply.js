@@ -9,8 +9,18 @@ var getRandomInt = function(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+const gifBotId = 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI';
+const gifBotEmail = "gifbot@webex.bot";
+
+
+
 module.exports = function createReply(msg) {
+    var returnMessage = {
+        roomId: "",
+        text: "",
+    }
     var messages = [];
+    returnMessage.roomId = msg.roomId;
     if(matchWordRegex("what good are you")){
         messages.push("I respond to the following prompts\n" + 
         "Banks asking me about my stories\n" + 
@@ -22,11 +32,30 @@ module.exports = function createReply(msg) {
         
     }
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
-        messages.push("Those stories should be done by the end of the day");
+        returnMessage.text = "Those stories should be done by the end of the day";
+        messages.push(returnMessage);
     }
     console.log("Saints? " + matchWordRegex("saints", msg.text));
     if(matchWordRegex("saints", msg.text)){
-        messages.push("fuck the saints");
+        returnMessage.text = "fuck the saints";
+        messages.push(returnMessage);
+    }
+
+    if(matchWordRegex("packers", msg.text)){
+        returnMessage.text = "packers suck";
+        messages.push(returnMessage);
+    }
+
+    if(matchWordRegex("ice cream", msg.text)){
+        returnMessage.text = "when the fuck did we get ice cream?"
+        messages.push(returnMessage);
+    }
+
+    if(matchWordRegex("bills", msg.text)){
+        returnMessage.mentionedPeople = [gifBotId];
+        returnMessage.markdown = "<@personEmail:" + gifBotEmail + "|GifBot> " + "buffalo bills";
+        delete returnMessage["text"];
+        messages.push(returnMessage);
     }
     if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
         var stfu = "Tom shut ";
@@ -57,11 +86,19 @@ module.exports = function createReply(msg) {
         for(var i=0; i<os; i++){
             lmao = lmao + 'o';
         }
-        messages.push(lmao);
+        returnMessage.text = lmao;
+        messages.push(returnMessage);
     }
 
     if(Math.random() > .95){
-        messages.push("imma take a fat nap");
+        returnMessage.text = "imma take a fat nap"
+        messages.push(returnMessage);
+    }
+
+    if(matchWordRegex("caleb", msg.personEmail)){
+        for(i in messages){
+            messages[i].text = messages[i].text + " traitor";
+        }
     }
 
     return messages;
