@@ -133,8 +133,10 @@ module.exports = function createReply(msg) {
        }
     }
     if(matchWordRegex("how much did you", msg.text)){
-        int = 5 - Math.floor(Math.log(getRandomInt(150)+1));
+        int = 19 - Math.floor(Math.log(getRandomInt(8886105)+1));
+        console.log(int);
         wordInt = intToString(int);
+        console.log(wordInt);
 
         drinks = "boi I had " + wordInt + " bevs last night";
         if(Math.random() > .7) {
@@ -179,7 +181,7 @@ module.exports = function createReply(msg) {
         }
     }
 
-    if(matchWordRegex("happy hour", msg.text) || matchWordRegex("drink", msg.text) || matchWordRegex("drunk", msg.text)){
+    if(matchWordRegex("happy hour", msg.text) || matchWordRegex("go drink", msg.text) || matchWordRegex("drunk", msg.text)){
         createMessageObject(msg.roomId, "ayyyeee lets get lit");
     }
 
