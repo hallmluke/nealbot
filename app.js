@@ -25,7 +25,7 @@ spark.on('messages-created', (msg) => {
                 roomId: msg.roomId,
                 text: returnMessages[i]
             }
-            spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
+            spark.messageSend(returnMessages[i]).then(message => console.log(message.id)).catch(err => console.error(err));
         }
     }
 });
