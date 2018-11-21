@@ -11,12 +11,15 @@ var getRandomInt = function(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-var createMessageObject = function(roomId, text) {
+var createMessageObject = function(roomId, text, files) {
     
     console.log("in create message object");
     var message = {};
     message.roomId = roomId;
     message.text = text;
+    if(files){
+        message.files = files;
+    }
     console.log("message: " +  message);
     messages.push(message);
     console.log("after message push");
@@ -71,6 +74,10 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "ayyyeee lets get lit");
     }
 
+    if(matchWordRegex("fortnite", msg.text)){
+        createMessageObject(msg.roomId, "orange justice up in this bitch", ['https://media.giphy.com/media/8mkylSWajoh7QBCz5j/giphy.gif']);
+    }
+
     /*if(matchWordRegex("bills", msg.text)){
         billsReturnMessage.roomId = msg.roomId;
         billsReturnMessage.mentionedPeople = [gifBotId];
@@ -117,7 +124,7 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "imma take a fat nap");
     }
 
-    if(matchWordRegex("caleb", msg.personEmail)){
+    if(matchWordRegex("hall", msg.personEmail)){
         for(i in messages){
             messages[i].text = messages[i].text + " traitor";
         }
