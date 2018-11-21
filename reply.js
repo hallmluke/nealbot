@@ -1,5 +1,7 @@
 snoowrap = require('snoowrap');
 
+var messages = [];
+
 var matchWordRegex = function(word, text){
     var regexp = new RegExp(word, 'i');
     return regexp.test(text);
@@ -11,10 +13,10 @@ var getRandomInt = function(max) {
 
 var createMessageObject = function(roomId, text, html) {
     console.log("in create message object");
-    messages.push({
-        roomId: roomId,
-        text: text
-    });
+    message.roomId = roomId;
+    message.text = text;
+    console.log("message: " +  message);
+    messages.push(message);
     console.log("after message push");
     console.log(messages);
 }
@@ -30,7 +32,6 @@ module.exports = function createReply(msg) {
         roomId: "",
         text: "",
     }
-    var messages = [];
     returnMessage.roomId = msg.roomId;
     if(matchWordRegex("what good are you")){
         helpReturnMessage.roomId = msg.roomId;
