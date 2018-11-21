@@ -18,8 +18,8 @@ spark.on('messages-created', (msg) => {
         roomId: msg.roomId,
         text: 'lmao'
     }
-    if(msg.personId != botId) {
-        //spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
+    if(msg.personEmail != "nealbot@webex.bot") {
+        spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
     }
 });
  
