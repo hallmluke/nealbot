@@ -41,7 +41,7 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("bills", msg.text)){
         returnMessage.mentionedPeople = [gifBotId];
-        returnMessage.text = "buffalo bills";
+        returnMessage.text = "<@personEmail:" + gifBotEmail + "|GifBot " + "buffalo bills";
         messages.push(returnMessage);
     }
 
