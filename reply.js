@@ -51,7 +51,7 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "fuck the saints");
     }
 
-    if(matchWordRegex("packers", msg.text)){
+    /*if(matchWordRegex("packers", msg.text)){
         packersReturnMessage.roomId = msg.roomId;
         packersReturnMessage.text = "packers suck";
         messages.push(packersReturnMessage);
@@ -125,7 +125,7 @@ module.exports = function createReply(msg) {
         for(i in messages){
             messages[i].text = messages[i].text + " traitor";
         }
-    }
+    }*/
     console.log("Reached end of reply");
     return messages;
 }
