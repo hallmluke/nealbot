@@ -9,6 +9,13 @@ var getRandomInt = function(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+var createMessageObject = function(roomId, text, html) {
+    messages.push({
+        roomId: roomId,
+        text: text
+    });
+}
+
 const gifBotId = 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI';
 
 const gifBotEmail = "gifbot@webex.bot";
@@ -38,8 +45,8 @@ module.exports = function createReply(msg) {
     }
     console.log("Saints? " + matchWordRegex("saints", msg.text));
     if(matchWordRegex("saints", msg.text)){
-        saintsReturnMessage.text = "fuck the saints";
-        messages.push(saintsReturnMessage);
+        console.log("hit stains");
+        createMessageObject(msg.roomId, "fuck the saints");
     }
 
     if(matchWordRegex("packers", msg.text)){
@@ -110,7 +117,7 @@ module.exports = function createReply(msg) {
             messages[i].text = messages[i].text + " traitor";
         }
     }
-
+    console.log("Reached end of reply");
     return messages;
 }
 
