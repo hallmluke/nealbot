@@ -23,13 +23,13 @@ module.exports = function createReply(msg) {
     var messages = [];
     returnMessage.roomId = msg.roomId;
     if(matchWordRegex("what good are you")){
-        messages.push("I respond to the following prompts\n" + 
+        returnMessage.text = "I respond to the following prompts\n" + 
         "Banks asking me about my stories\n" + 
         "My favorite football team, the Saints\n" + 
         "Some annoying guy says something\n" + 
         "Being asked how to do anything\n\n" + 
-        "Also, I'll just say lmao a lot.  I also like naps"
-        );
+        "Also, I'll just say lmao a lot.  I also like naps";
+        messages.push(returnMessage);
         
     }
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
@@ -67,7 +67,8 @@ module.exports = function createReply(msg) {
             stfu = stfu + "the fuck "
         }
         stfu = stfu + "up!"
-        messages.push(stfu);
+        returnMessage.text = stfu;
+        messages.push(returnMessage);
     }
     if(matchWordRegex("how do", msg.text)){
         var idk = "id";
@@ -78,7 +79,8 @@ module.exports = function createReply(msg) {
         if(Math.random > .3){
             idk = idk + " or some shit";
         }
-        messages.push(idk);
+        returnMessage.text = idk;
+        messages.push(returnMessage);
     }
     if(Math.random() > .4){
         if(Math.random() > .5){
