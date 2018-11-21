@@ -176,7 +176,7 @@ module.exports = function createReply(msg) {
         psl = psl + "!"
         createMessageObject(msg.roomId, psl)
     }
-    if(matchWordRegex("you okay", msg.text) || matchWordRegex("feeling alright", msg.text) || matchWordRegex("hurt")) {
+    if(matchWordRegex("you ok", msg.text) || matchWordRegex("feeling alright", msg.text) || matchWordRegex("hurt", msg.text)) {
         var hurt = null;
         if(Math.random() > .1) {    
             hurt = "nah fam hurt my "
