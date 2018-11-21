@@ -10,10 +10,13 @@ var getRandomInt = function(max) {
 }
 
 var createMessageObject = function(roomId, text, html) {
+    console.log("in create message object");
     messages.push({
         roomId: roomId,
         text: text
     });
+    console.log("after message push");
+    console.log(messages);
 }
 
 const gifBotId = 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI';
