@@ -40,7 +40,7 @@ module.exports = function createReply(msg) {
     }
 
     if(matchWordRegex("bills", msg.text)){
-        returnMessage.toPersonEmail = gifBotEmail;
+        returnMessage.mentionedPeople = [gifBotId];
         returnMessage.text = "buffalo bills";
         messages.push(returnMessage);
     }
