@@ -36,44 +36,38 @@ module.exports = function createReply(msg) {
     }
     returnMessage.roomId = msg.roomId;
     if(matchWordRegex("what good are you")){
-        helpReturnMessage.roomId = msg.roomId;
-        helpReturnMessage.text = "I respond to the following prompts\n" + 
+        text = "I respond to the following prompts\n" + 
         "Banks asking me about my stories\n" + 
         "My favorite football team, the Saints\n" + 
         "Some annoying guy says something\n" + 
         "Being asked how to do anything\n\n" + 
         "Also, I'll just say lmao a lot.  I also like naps";
-        messages.push(helpReturnMessage);
+        createMessageObject(msg.roomId, text);
         
     }
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
-        banksReturnMessage.roomId = msg.roomId;
-        banksReturnMessage.text = "Those stories should be done by the end of the day";
-        messages.push(banksReturnMessage);
+        text = "Those stories should be done by the end of the day";
+        createMessageObject(msg.roomId, text);
     }
     console.log("Saints? " + matchWordRegex("saints", msg.text));
     if(matchWordRegex("saints", msg.text)){
-        console.log("hit stains");
         createMessageObject(msg.roomId, "fuck the saints");
     }
 
-    /*if(matchWordRegex("packers", msg.text)){
-        packersReturnMessage.roomId = msg.roomId;
-        packersReturnMessage.text = "packers suck";
-        messages.push(packersReturnMessage);
+    if(matchWordRegex("packers", msg.text)){
+        createMessageObject(msg.roomId, "packers suck");
     }
 
     if(matchWordRegex("ice cream", msg.text)){
-        iceCreamReturnMessage.roomId = msg.roomId;
-        iceCreamReturnMessage.text = "when the fuck did we get ice cream?"
-        messages.push(iceCreamReturnMessage);
+        text = "when the fuck did we get ice cream?"
+        createMessageObject(msg.roomId, text);
     }
 
     if(matchWordRegex("kickball", msg.text)){
         
     }
 
-    if(matchWordRegex("bills", msg.text)){
+    /*if(matchWordRegex("bills", msg.text)){
         billsReturnMessage.roomId = msg.roomId;
         billsReturnMessage.mentionedPeople = [gifBotId];
         billsReturnMessage.text = "GifBot buffalo bills";
@@ -82,16 +76,14 @@ module.exports = function createReply(msg) {
         //returnMessage.markdown = "<@personEmail:" + gifBotEmail + "|GifBot> " + "buffalo bills";
         //delete returnMessage["text"];
         messages.push(billsReturnMessage);
-    }
+    }*/
     if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
         var stfu = "Tom shut ";
         if(Math.random() > .75){
             stfu = stfu + "the fuck "
         }
         stfu = stfu + "up!"
-        stfuReturnMessage.roomId = msg.roomId;
-        stfuReturnMessage.text = stfu;
-        messages.push(stfuReturnMessage);
+        createMessageObject(msg.roomId, stfu);
     }
     if(matchWordRegex("how do", msg.text)){
         var idk = "id";
@@ -102,9 +94,7 @@ module.exports = function createReply(msg) {
         if(Math.random > .3){
             idk = idk + " or some shit";
         }
-        idkReturnMessage.roomId = msg.roomId;
-        idkReturnMessage.text = idk;
-        messages.push(idkReturnMessage);
+        createMessageObject(msg.roomId, idk);
     }
     if(Math.random() > .4){
         if(Math.random() > .5){
@@ -116,22 +106,18 @@ module.exports = function createReply(msg) {
         for(var i=0; i<os; i++){
             lmao = lmao + 'o';
         }
-        lmaoReturnMessage.roomId = msg.roomId;
-        lmaoReturnMessage.text = lmao;
-        messages.push(lmaoReturnMessage);
+        createMessageObject(msg.roomId, lmao);
     }
 
     if(Math.random() > .95){
-        napReturnMessage.roomId = msg.roomId;
-        napReturnMessage.text = "imma take a fat nap"
-        messages.push(napReturnMessage);
+        createMessageObject(msg.roomId, "imma take a fat nap");
     }
 
     if(matchWordRegex("caleb", msg.personEmail)){
         for(i in messages){
             messages[i].text = messages[i].text + " traitor";
         }
-    }*/
+    }
     console.log("Reached end of reply");
     return messages;
 }
