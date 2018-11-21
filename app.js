@@ -29,7 +29,7 @@ app.listen(port, function() {
     // express route defined above.
     .then(() => spark.webhookAdd({
       name: 'my webhook',
-      targetUrl: 'https://nealbot.herokuapp.com/',
+      targetUrl: 'https://nealbot.herokuapp.com/webhook',
       resource: 'all',
       event: 'all',
     }));
