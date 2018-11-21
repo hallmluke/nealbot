@@ -8,6 +8,7 @@ var getRandomInt = function(max) {
 }
 
 const gifBotId = 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI';
+const gifBotId = 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI'
 const gifBotEmail = "gifbot@webex.bot";
 
 
@@ -42,7 +43,7 @@ module.exports = function createReply(msg) {
     if(matchWordRegex("bills", msg.text)){
         returnMessage.mentionedPeople = [gifBotId];
         returnMessage.text = "GifBot buffalo bills";
-        returnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI\">GifBot</spark-mention> buffalo bills",
+        returnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"" + gifBotId + "\">GifBot</spark-mention> buffalo bills",
         
         //returnMessage.markdown = "<@personEmail:" + gifBotEmail + "|GifBot> " + "buffalo bills";
         //delete returnMessage["text"];
