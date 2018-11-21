@@ -52,6 +52,10 @@ module.exports = function createReply(msg) {
         messages.push(returnMessage);
     }
 
+    if(matchWordRegex("kickball", msg.text)){
+        
+    }
+
     if(matchWordRegex("bills", msg.text)){
         returnMessage.mentionedPeople = [gifBotId];
         returnMessage.text = "GifBot buffalo bills";
