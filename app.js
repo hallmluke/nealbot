@@ -15,7 +15,7 @@ spark.on('messages-created', (msg) => {
     console.log(JSON.stringify(msg, null, 4));
     var returnMessage = {
         roomId: msg.roomId,
-        test: 'lmao'
+        text: 'lmao'
     }
     spark.messageSend(returnMessage).then(message => console.log(message.id)).catch(err => console.error(err));
 });
