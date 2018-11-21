@@ -30,6 +30,7 @@ module.exports = function createReply(msg) {
     var messages = [];
     returnMessage.roomId = msg.roomId;
     if(matchWordRegex("what good are you")){
+        helpReturnMessage.roomId = msg.roomId;
         helpReturnMessage.text = "I respond to the following prompts\n" + 
         "Banks asking me about my stories\n" + 
         "My favorite football team, the Saints\n" + 
@@ -40,7 +41,8 @@ module.exports = function createReply(msg) {
         
     }
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
-        bankReturnMessage.text = "Those stories should be done by the end of the day";
+        banksReturnMessage.roomId = msg.roomId;
+        banksReturnMessage.text = "Those stories should be done by the end of the day";
         messages.push(banksReturnMessage);
     }
     console.log("Saints? " + matchWordRegex("saints", msg.text));
@@ -50,11 +52,13 @@ module.exports = function createReply(msg) {
     }
 
     if(matchWordRegex("packers", msg.text)){
+        packersReturnMessage.roomId = msg.roomId;
         packersReturnMessage.text = "packers suck";
         messages.push(packersReturnMessage);
     }
 
     if(matchWordRegex("ice cream", msg.text)){
+        iceCreamReturnMessage.roomId = msg.roomId;
         iceCreamReturnMessage.text = "when the fuck did we get ice cream?"
         messages.push(iceCreamReturnMessage);
     }
@@ -64,6 +68,7 @@ module.exports = function createReply(msg) {
     }
 
     if(matchWordRegex("bills", msg.text)){
+        billsReturnMessage.roomId = msg.roomId;
         billsReturnMessage.mentionedPeople = [gifBotId];
         billsReturnMessage.text = "GifBot buffalo bills";
         billsReturnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"" + gifBotId + "\">GifBot</spark-mention> buffalo bills",
@@ -78,6 +83,7 @@ module.exports = function createReply(msg) {
             stfu = stfu + "the fuck "
         }
         stfu = stfu + "up!"
+        stfuReturnMessage.roomId = msg.roomId;
         stfuReturnMessage.text = stfu;
         messages.push(stfuReturnMessage);
     }
@@ -90,6 +96,7 @@ module.exports = function createReply(msg) {
         if(Math.random > .3){
             idk = idk + " or some shit";
         }
+        idkReturnMessage.roomId = msg.roomId;
         idkReturnMessage.text = idk;
         messages.push(idkReturnMessage);
     }
@@ -103,11 +110,13 @@ module.exports = function createReply(msg) {
         for(var i=0; i<os; i++){
             lmao = lmao + 'o';
         }
+        lmaoReturnMessage.roomId = msg.roomId;
         lmaoReturnMessage.text = lmao;
         messages.push(lmaoReturnMessage);
     }
 
     if(Math.random() > .95){
+        napReturnMessage.roomId = msg.roomId;
         napReturnMessage.text = "imma take a fat nap"
         messages.push(napReturnMessage);
     }
