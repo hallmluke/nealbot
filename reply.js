@@ -96,6 +96,29 @@ module.exports = function createReply(msg) {
         stfu = stfu + "up!"
         createMessageObject(msg.roomId, stfu);
     }
+    if(matchWordRegex("how about", msg.text) || matchWordRegex("want to", msg.text) || matchWordRegex("how bout")) {
+        var bet = "aight";
+        if(Math.random > .05) {
+            bet = bet + " bet";
+        }
+        bet = bet + " im in";
+        createMessageObject(msg.roomId, bet);
+    }
+    if(matchWordRegex("cold", msg.text)) {
+        createMessageObject(msg.roomId, "imma take that boys coat");
+    }
+    if(matchWordRegex("thirsty", msg.text) || matchWordRegex("coffee", msg.text)){
+        var psl = "bout to get me some pumpkin spice latte"
+        if(Math.random() > .8) {
+            psl = psl + " boi"
+            var is = getRandomInt(3);
+            for(var i=0; i<os; i++){
+                psl = psl + 'i';
+            }
+        }
+        psl = psl + "!"
+        createMessageObject(msg.roomId, psl)
+    }
     if(matchWordRegex("how do", msg.text)){
         var idk = "id";
         if(Math.random > .6){
