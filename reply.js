@@ -189,6 +189,8 @@ module.exports = function createReply(msg) {
     }
 
     if(matchWordRegex("reddit", msg.text)){
+        var link = redditscrape();
+        console.log(link);
         createMessageObject(msg.roomId, redditscrape());
     }
 
