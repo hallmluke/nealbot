@@ -7,12 +7,59 @@ var matchWordRegex = function(word, text){
     return regexp.test(text);
 }
 
+var getBodyPart = function() {
+    int = getRandomInt(6);
+    part = null;
+    switch(int) {
+        case 0:
+            part = "arm"
+            break;
+        case 1:
+            part = "back"
+            break;
+        case 2:
+            part = "shoulder"
+            break;
+        case 3:
+            part = "knee"
+            break;
+        case 4:
+            part = "neck"
+            break;
+        case 5:
+            part = "ribs"
+            break;
+        default:
+            part = "leg"
+    }
+    return part;
+}
+
+var getActivity = function() {
+    int = getRandomInt(3);
+    activity = null;
+    switch(int) {
+        case 0:
+            part = "at kickball"
+            break;
+        case 1:
+            part = "drinking"
+            break;
+        case 2:
+            part = "at work"
+            break;
+        default:
+            part = "playing soccer"
+    }
+    return part;
+}
+
 var getRandomInt = function(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
 var createMessageObject = function(roomId, text, files) {
-    
+
     console.log("in create message object");
     var message = {};
     message.roomId = roomId;
@@ -36,20 +83,30 @@ module.exports = function createReply(msg) {
     messages = [];
 
     if(matchWordRegex("what good are you", msg.text)){
-        text = "I respond to the following prompts\n" + 
-        "Banks asking me about my stories\n" + 
-        "My favorite football team, the Saints\n" + 
-        "Some annoying guy says something\n" + 
-        "Being asked how to do anything\n\n" + 
+        text = "I respond to the following prompts\n" +
+        "Banks asking me about my stories\n" +
+        "My favorite football team, the Saints\n" +
+        "Some annoying guy says something\n" +
+        "Being asked how to do anything\n\n" +
         "Also, I'll just say lmao a lot.  I also like naps";
         createMessageObject(msg.roomId, text);
-        
+
     }
-    if(matchWordRegex("banks", msg.personEmail) && (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text))){
-        text = "Those stories should be done by the end of the day";
-        createMessageObject(msg.roomId, text);
+    if(matchWordRegex("banks", msg.personEmail)) {
+       if (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text)) {
+           text = "Those stories should be done by the end of the day";
+           createMessageObject(msg.roomId, text);
+       }
+       if (matchWordRegex("new job", msg.text)) {
+            text = "Whatever. I've had a clearance since I was 16. I'll be fine.";
+            createMessageObject(msg.roomId, text);
+       }
+       if (matchWordRegex("are you done", msg.text)) {
+           text = "Not yet. @ me if you fine fellows need anything. I'm just going to be knocking out stories.";
+           createMessageObject(msg.roomId, text);
+       }
     }
-    console.log("Saints? " + matchWordRegex("saints", msg.text));
+
     if(matchWordRegex("saints", msg.text)){
         createMessageObject(msg.roomId, "fuck the saints");
     }
@@ -83,7 +140,7 @@ module.exports = function createReply(msg) {
         billsReturnMessage.mentionedPeople = [gifBotId];
         billsReturnMessage.text = "GifBot buffalo bills";
         billsReturnMessage.html = "<spark-mention data-object-type=\"person\" data-object-id=\"" + gifBotId + "\">GifBot</spark-mention> buffalo bills",
-        
+
         //returnMessage.markdown = "<@personEmail:" + gifBotEmail + "|GifBot> " + "buffalo bills";
         //delete returnMessage["text"];
         messages.push(billsReturnMessage);
@@ -118,6 +175,27 @@ module.exports = function createReply(msg) {
         }
         psl = psl + "!"
         createMessageObject(msg.roomId, psl)
+    }
+    if(matchWordRegex("you ok", msg.text) || matchWordRegex("feeling alright", msg.text) || matchWordRegex("hurt", msg.text)) {
+        var hurt = null;
+        if(Math.random() > .1) {    
+            hurt = "nah fam hurt my "
+            hurt = hurt + getBodyPart();
+            hurt = hurt + " ";
+            hurt = hurt + getActivity();
+            hurt = hurt + " last night";
+            if(Math.random() > .9) {
+                hurt = hurt + ". its pretty bad, might take tomorrow off";
+            }
+        }
+        else {
+            hurt = "yeah im alright"
+            if(Math.random() > .7) {
+                hurt = hurt + ". thanks for asking";
+            }
+        }
+        createMessageObject(msg.roomId, hurt);
+
     }
     if(matchWordRegex("dynamo", msg.text) || matchWordRegex("database", msg.text)) {
         dynamo = "id";
