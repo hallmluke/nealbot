@@ -12,7 +12,7 @@ module.exports = function createReply(msg) {
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
         messages.push("Those stories should be done by the end of the day");
     }
-
+    console.log("Saints? " + matchWordRegex("saints", msg.text));
     if(matchWordRegex("saints", msg.text)){
         messages.push("fuck the saints");
     }

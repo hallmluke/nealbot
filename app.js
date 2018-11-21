@@ -16,8 +16,11 @@ const port = parseInt(process.env.PORT || '3000', 10);
 spark.on('messages-created', (msg) => {
     console.log(JSON.stringify(msg, null, 4));
     var returnMessages = reply(msg);
+    console.log("Return Messages: " + returnMessages);
     if(msg.personEmail != "nealbot@webex.bot") {
+        console.log("not the bot");
         for(i in returnMesages){
+            console.log("in the for loop");
             var returnMessage = {
                 roomId: msg.roomId,
                 text: returnMessages[i]
