@@ -21,10 +21,7 @@ spark.on('messages-created', (msg) => {
         console.log("not the bot");
         for(i in returnMessages){
             console.log("in the for loop");
-            var returnMessage = {
-                roomId: msg.roomId,
-                text: returnMessages[i]
-            }
+            console.log(JSON.stringify(returnMessages[i]));
             spark.messageSend(returnMessages[i]).then(message => console.log(message.id)).catch(err => console.error(err));
         }
     }

@@ -10,12 +10,13 @@ var getRandomInt = function(max) {
 const gifBotId = 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI';
 const gifBotEmail = "gifbot@webex.bot";
 
-var returnMessage = {
-    roomId: "",
-    text: "",
-}
+
 
 module.exports = function createReply(msg) {
+    var returnMessage = {
+        roomId: "",
+        text: "",
+    }
     var messages = [];
     returnMessage.roomId = msg.roomId;
     if(matchWordRegex("banks", msg.personEmail) && matchWordRegex("status", msg.text)){
