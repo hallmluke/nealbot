@@ -1,3 +1,5 @@
+snoowrap = require('snoowrap');
+
 var matchWordRegex = function(word, text){
     var regexp = new RegExp(word, 'i');
     return regexp.test(text);
@@ -16,7 +18,25 @@ module.exports = function createReply(msg) {
     if(matchWordRegex("saints", msg.text)){
         messages.push("fuck the saints");
     }
-
+    if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
+        var stfu = "Tom shut ";
+        if(Math.random() > .75){
+            stfu = stfu + "the fuck "
+        }
+        stfu = stfu + "up!"
+        messages.push(stfu);
+    }
+    if(matchWordRegex("how do", msg.text)){
+        var idk = "id";
+        if(Math.random > .6){
+            idk + idk + "f";
+        }
+        idk = idk + "k, ask Sam";
+        if(Math.random > .3){
+            idk = idk + " or some shit";
+        }
+        messages.push(idk);
+    }
     if(Math.random() > .4){
         if(Math.random() > .5){
             var lmao = "lmao";
