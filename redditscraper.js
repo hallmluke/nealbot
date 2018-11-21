@@ -21,6 +21,9 @@ module.exports = function() {
   if(found4.length > 10){
     var link = found4[5];
   }
+  else{
+      var link = "www.reddit.com/r/gaming";
+  }
 
   link = link.substring(0, response.length-2);
   console.log(link);
