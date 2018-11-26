@@ -159,15 +159,24 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("weather", msg.text)) {
         console.log("weathering the storm");
-        request(url, function (err, response, body) {
-            if(err){
-              console.log('error:', error);
-            } else {
-              console.log("the storm is tamed");
-              createMessageObject(msg.roomId, "so I got this far but shit's broken");
-            }
-          }
-        );
+        await weather().then((body) => {
+            console.log(body);
+            createMessageObject.Object(msg.roomId, "fucking hell why did I make this difficult");
+        });
+    }
+
+    weather = async function() {
+        return new Promise((resolve, reject) => {
+            request(url, function (err, response, body) {
+                if(err){
+                    console.log('error:', error);
+                    reject(error);
+                } else {
+                    console.log("the storm is tamed");
+                    resolve(body);
+                }
+            });
+        });
     }
 
     if(matchWordRegex("be in today", msg.text) || matchWordRegex("in the office", msg.text)) {
