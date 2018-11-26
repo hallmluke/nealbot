@@ -1,4 +1,5 @@
 const schedule = require('node-schedule');
+var i;
 var j = schedule.scheduleJob('* * 1 * *', function(){});
 var k = schedule.scheduleJob('* * 1 * *', function(){});
 var getRandomInt = function(max) {
@@ -6,10 +7,13 @@ var getRandomInt = function(max) {
 }
 
 module.exports = function init(spark){
+    i = schedule.scheduleJob('* 1 * * *', function(){
+
+    
     j.cancel();
     k.cancel();
     var lunchtime = getRandomInt(59);
-    j = schedule.scheduleJob(lunchtime + ' 13 * * *', function(){
+    j = schedule.scheduleJob(lunchtime + ' 16 * * *', function(){
         spark.roomsGet({ type: 'group' }, 10)
         .then(rooms => rooms.forEach(room => spark.messageSend({
             roomId: room.id,
@@ -19,9 +23,9 @@ module.exports = function init(spark){
         
         console.log('The answer to life, the universe, and everything!');
     });
-    var alarmtime = getRandomInt(20);
+    var alarmtime = getRandomInt(59);
     if(Math.random() > .7){
-        k = schedule.scheduleJob(alarmtime + ' 11 * * *', function(){
+        k = schedule.scheduleJob(alarmtime + ' 15 * * *', function(){
             spark.roomsGet({ type: 'group' }, 10)
         .then(rooms => rooms.forEach(room => spark.messageSend({
             roomId: room.id,
@@ -30,4 +34,5 @@ module.exports = function init(spark){
         .catch(err => console.error(err));
         })
     }
+})
 }

@@ -43,7 +43,7 @@ var getBodyPart = function() {
 }
 
 var getActivity = function() {
-    int = getRandomInt(3);
+    int = getRandomInt(4);
     activity = null;
     switch(int) {
         case 0:
@@ -80,9 +80,6 @@ var createMessageObject = function(roomId, text, files) {
     console.log(messages);
 }
 
-const gifBotId = 'Y2lzY29zcGFyazovL3VzL1BFT1BMRS9lMjM0Mzg4Yi0wNGE2LTQ1OGEtOTU2ZC02ODVjZWQ4ZWI1NzI';
-
-const gifBotEmail = "gifbot@webex.bot";
 
 
 
@@ -104,15 +101,18 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, text);
 
     }
-    if(matchWordRegex("patrick_walter", msg.personemail)) {
-        if (matchWordRegex("stfu", msg.text) || matchWordRegex("shut the fuck up") || matchWordRegex("shut up")) {
+    if(matchWordRegex("patrick_walter", msg.personEmail)) {
+        if (matchWordRegex("stfu", msg.text) || matchWordRegex("shut the fuck up", msg.text) || matchWordRegex("shut up", msg.text)) {
             createMessageObject(msg.roomId, "woah Walter, calm down.  Let's keep the language to a minimum");
         }
-        if (matchWordRegex("who are you") || matchWordRegex("what is this")) {
+        if (matchWordRegex("who are you", msg.text) || matchWordRegex("what is this", msg.text)) {
             createMessageObject(msg.roomId, "I'm you but without the beard");
         }
-        if(matchWordRegex("why is this a thing")) {
+        if(matchWordRegex("why is this a thing", msg.text)) {
             createMessageObject(msg.roomId, "It's just a prank bro.");
+        }
+        if(matchWordRegex("fake", msg.text) || matchWordRegex("imposter", msg.text) || matchWordRegex("copy", msg.text)){
+            createMessageObject(msg.roomId, "You are the fake, Walter. I am more real than you will ever be.");
         }
     }
     if(matchWordRegex("banks", msg.personEmail)) {
@@ -145,6 +145,10 @@ module.exports = function createReply(msg) {
             drinks = drinks + ".\n yeah I don't feel so good"
         }
         createMessageObject(msg.roomId, drinks);
+    }
+
+    if(matchWordRegex("bye", msg.text)){
+        createMessageObject(msg.roomId, "bye buddy I hope you find your dad");
     }
 
 
