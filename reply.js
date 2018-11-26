@@ -143,7 +143,7 @@ module.exports = function createReply(msg) {
             drinks = drinks + ". its lit fam"
         }
         if(int >= 6) {
-            drinks = drinks + ".\n yeah I don't feel so good"
+            drinks = drinks + ".\nyeah I don't feel so good"
         }
         createMessageObject(msg.roomId, drinks);
     }
