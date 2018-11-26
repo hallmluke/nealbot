@@ -159,7 +159,7 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("weather", msg.text)) {
         console.log("weathering the storm");
-        await weather().then((body) => {
+        weather().then((body) => {
             console.log(body);
             createMessageObject(msg.roomId, "fucking hell why did I make this difficult");
         }).catch((error) => {
