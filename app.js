@@ -14,10 +14,6 @@ const spark = new Spark({
 
 scheduled(spark);
 
-var dailyReset = scheduler.scheduleJob('* 1 * * *', function() {
-  scheduled(spark);
-})
-
  
 const port = parseInt(process.env.PORT || '3000', 10);
  
