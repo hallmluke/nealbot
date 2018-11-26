@@ -167,7 +167,7 @@ module.exports = function createReply(msg) {
         });
     }
 
-    weather = function() {
+    async function weather() {
         return new Promise((resolve, reject) => {
             request(url, function (err, response, body) {
                 if(err){
