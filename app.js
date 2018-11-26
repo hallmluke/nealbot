@@ -18,18 +18,19 @@ scheduled(spark);
 const port = parseInt(process.env.PORT || '3000', 10);
  
 // add events
-spark.on('messages-created', (msg) => {
+spark.on('messages-created', async (msg) => {
     console.log(JSON.stringify(msg, null, 4));
-    var returnMessages = await reply(msg);
-    console.log("Return Messages: " + returnMessages);
-    if(msg.personEmail != "nealbot@webex.bot") {
-        console.log("not the bot");
-        for(i in returnMessages){
-            console.log("in the for loop");
-            console.log(JSON.stringify(returnMessages[i]));
-            spark.messageSend(returnMessages[i]).then(message => console.log(message.id)).catch(err => console.error(err));
-        }
-    }
+    await reply(msg).then((returnMessages) => {
+      console.log("Return Messages: " + returnMessages);
+      if(msg.personEmail != "nealbot@webex.bot") {
+          console.log("not the bot");
+          for(i in returnMessages){
+              console.log("in the for loop");
+              console.log(JSON.stringify(returnMessages[i]));
+              spark.messageSend(returnMessages[i]).then(message => console.log(message.id)).catch(err => console.error(err));
+          }
+      }
+    });
 });
  
 const app = express();
