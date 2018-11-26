@@ -147,6 +147,10 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, drinks);
     }
 
+    if(matchWordRegex("hi", msg.text) || matchWordRegex("hello", msg.text) || matchWordRegex("hey", msg.text) || matchWordRegex("whats up", msg.text)){
+        createMessageObject(msg.roomId, "sup");
+    }
+
     if(matchWordRegex("bye", msg.text)){
         createMessageObject(msg.roomId, "bye buddy I hope you find your dad");
     }
