@@ -150,23 +150,27 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("be in today", msg.text) || matchWordRegex("in the office", msg.text)) {
         x = getRandomInt(6);
+        console.log(x);
         if( x < 1) {
             hour = "10"
-            minute = toString(getRandomInt(29) + 30);
+            minute = getRandomInt(29) + 30;
+            console.log(minute);
             
         }
         else if (x < 3) {
             hour = "11"
-            minute = toString(getRandomInt(59));
-            if(minute == "0") {
-                minute = "00";
+            minute = getRandomInt(59);
+            console.log(minute);
+            if (minute == 0) {
+                minute = "00"
             }
         }
         else if (x < 5) {
             hour = "12"
-            minute = toString(getRandomInt(59));
-            if(minute == "0") {
-                minute = "00";
+            minute = getRandomInt(59);
+            console.log(minute);
+            if (minute == 0) {
+                minute = "00"
             }
         }
         else {
