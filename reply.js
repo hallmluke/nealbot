@@ -221,6 +221,9 @@ module.exports = function createReply(msg) {
     if(matchWordRegex("cold", msg.text)) {
         createMessageObject(msg.roomId, "imma take that boys coat");
     }
+    if(matchWordRegex("cava", msg.text)){
+        createMessageObject(msg.roomId, "anywhere but cava. I went there " + getRandomInt(15) + " times last week");
+    }
     if(matchWordRegex("thirsty", msg.text) || matchWordRegex("coffee", msg.text)){
         var psl = "bout to get me some pumpkin spice latte"
         if(Math.random() > .8) {
