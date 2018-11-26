@@ -160,11 +160,8 @@ var createReply = async function(msg) {
     
         if(matchWordRegex("weather", msg.text)) {
             console.log("weathering the storm");
-            await weather().then((body) => {
-                createMessageObject(msg.roomId, "fucking hell this is not worth the effort");
-            }).catch((error) => {
-                createMessageObject(msg.roomId, "fucking hell why did I make this difficult");
-            })
+            var body = await weather();
+            createMessageObject(msg.roomId, "fucking hell this is not worth the effort");
         }
     
         var weather = async function() {
