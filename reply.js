@@ -89,7 +89,7 @@ var createMessageObject = function(roomId, text, files) {
 
 
 
-module.exports = function createReply(msg) {
+module.exports = async function createReply(msg) {
     messages = [];
 
     if(matchWordRegex("help", msg.text)){
@@ -159,7 +159,7 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("weather", msg.text)) {
         console.log("weathering the storm");
-        await weather().then((body) => {
+        weather().then((body) => {
             console.log(body);
             createMessageObject(msg.roomId, "fucking hell why did I make this difficult");
         }).catch((error) => {
