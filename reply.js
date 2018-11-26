@@ -89,8 +89,9 @@ var createMessageObject = function(roomId, text, files) {
 
 
 
-async function createReply(msg) {
-    return new Promise((resolve, reject) => {messages = [];
+var createReply = async function(msg) {
+    return new Promise((resolve, reject) => {
+        messages = [];
 
         if(matchWordRegex("help", msg.text)){
             text = "I respond to the following prompts by way of keyword.  I won't tell you them though, because that'd mean being helpful\n" +
@@ -159,14 +160,14 @@ async function createReply(msg) {
     
         if(matchWordRegex("weather", msg.text)) {
             console.log("weathering the storm");
-            weather().then((body) => {
+            await weather().then((body) => {
                 createMessageObject(msg.roomId, "fucking hell this is not worth the effort");
             }).catch((error) => {
                 createMessageObject(msg.roomId, "fucking hell why did I make this difficult");
             })
         }
     
-        async function weather() {
+        var weather = async function() {
             return new Promise((resolve, reject) => {
                 request(url, function (err, response, body) {
                     if(err){
