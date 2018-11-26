@@ -89,7 +89,7 @@ var createMessageObject = function(roomId, text, files) {
 
 
 
-module.exports = async function createReply(msg) {
+async function createReply(msg) {
     return new Promise((resolve, reject) => {messages = [];
 
         if(matchWordRegex("help", msg.text)){
@@ -400,4 +400,4 @@ module.exports = async function createReply(msg) {
     
 }
 
-
+module.exports = createReply;
