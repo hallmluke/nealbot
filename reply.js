@@ -1,5 +1,5 @@
 snoowrap = require('snoowrap');
-const redditscrape = require('./redditscraper');
+//const redditscrape = require('./redditscraper');
 
 var messages = [];
 
@@ -192,11 +192,11 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, "orange justice up in this bitch", ['https://media.giphy.com/media/8mkylSWajoh7QBCz5j/giphy.gif']);
     }
 
-    if(matchWordRegex("reddit", msg.text)){
+    /*if(matchWordRegex("reddit", msg.text)){
         var link = redditscrape();
         console.log(link);
         createMessageObject(msg.roomId, redditscrape());
-    }
+    }*/
 
     if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
         var stfu = "Tom shut ";
