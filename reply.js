@@ -148,6 +148,10 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, drinks);
     }
 
+    if(matchWordRegex("go for lunch", msg.text)) {
+        createMessageObject(msg.roomId, "eh I went to cava again anyways");
+    }
+
     if(matchWordRegex("be in today", msg.text) || matchWordRegex("in the office", msg.text)) {
         x = getRandomInt(5);
         console.log(x);
