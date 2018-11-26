@@ -173,7 +173,9 @@ var createReply = async function(msg) {
         if(matchWordRegex("weather", msg.text)) {
             console.log("weathering the storm");
             var body = weather();
+            console.log(body);
             weather = JSON.parse(body);
+            console.log(weather);
             resp = null;
             if (weather.main.temp < 45) {
                 resp = "Its cold as fuck boi\n"
