@@ -1,4 +1,3 @@
-snoowrap = require('snoowrap');
 const redditscrape = require('./redditscraper');
 
 var messages = [];
@@ -129,7 +128,7 @@ module.exports = function createReply(msg) {
            createMessageObject(msg.roomId, text);
        }
        if (matchWordRegex("document", msg.text)) {
-           text = "Ive got it in a word doc, Ill move it over once Im done"
+           text = "I've got it in a word doc, Ill move it over once Im done"
            createMessageObject(msg.roomId, text);
        }
     }
@@ -245,6 +244,9 @@ module.exports = function createReply(msg) {
         }
         createMessageObject(msg.roomId, hurt);
 
+    }
+    if(matchWordRegex(" elf ", msg.text) || matchWordRegex("halfling", msg.text) || matchWordRegex("gnome", msg.text)) {
+        createMessageObject(msg.roomId, "You've been gnomed!");
     }
     if(matchWordRegex("dynamo", msg.text) || matchWordRegex("database", msg.text)) {
         dynamo = "id";
