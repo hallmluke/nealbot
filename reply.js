@@ -148,6 +148,35 @@ module.exports = function createReply(msg) {
         createMessageObject(msg.roomId, drinks);
     }
 
+    if(matchWordRegex("be in today", msg.text) || matchWordRegex("in the office", msg.text)) {
+        x = getRandomInt(6);
+        if( x < 1) {
+            hour = "10"
+            minute = toString(getRandomInt(29) + 30);
+            
+        }
+        else if (x < 3) {
+            hour = "11"
+            minute = toString(getRandomInt(59));
+            if(minute == "0") {
+                minute = "00";
+            }
+        }
+        else if (x < 5) {
+            hour = "12"
+            minute = toString(getRandomInt(59));
+            if(minute == "0") {
+                minute = "00";
+            }
+        }
+        else {
+            hour = "1"
+            minute = "00"
+        }
+        late = "I'll be in by " + hour + ":" + minute + " hopefully"
+        createMessageObject(msg.roomId, late);
+    }
+
     if(matchWordRegex("hi", msg.text) || matchWordRegex("hello", msg.text) || matchWordRegex("hey", msg.text) || matchWordRegex("whats up", msg.text)){
         createMessageObject(msg.roomId, "sup");
     }
