@@ -87,16 +87,14 @@ var createMessageObject = function(roomId, text, files) {
 }
 
 var weather = function() {
-    return new Promise((resolve, reject) => {
-        request(url, function (err, response, body) {
-            if(err){
-                console.log('error:', error);
-                reject(error);
-            } else {
-                console.log("the storm is tamed");
-                resolve(body);
-            }
-        });
+    request(url, function (err, response, body) {
+        if(err){
+            console.log('error:', error);
+            reject(error);
+        } else {
+            console.log("the storm is tamed");
+            resolve(body);
+        }
     });
 }
 
@@ -172,45 +170,49 @@ var createReply = async function(msg) {
     
         if(matchWordRegex("weather", msg.text)) {
             console.log("weathering the storm");
-            var body = weather();
-            console.log(body);
-            weather = JSON.parse(body);
-            console.log(weather);
-            resp = null;
-            if (weather.main.temp < 45) {
-                resp = "Its cold as fuck boi\n"
-            }
-            else if(weather.main.temp < 70) {
-                resp = "What an average day\n"
-            }
-            else {
-                resp = "Hot as fuck outside rn\n"
-            }
-            for(i in weather.weather) {
-                if (weather.weather[i].id >= 200 && weather.weather[i].id < 299) {
-                    resp += "These fucking thunderstorms need to go\n"
+            request(url, function (err, response, body) {
+                if(err){
+                    console.log('error:', error);
+                    createMessageObject(msg.roomId, "weather is fucked right now");
+                } else {
+                    let weather = JSON.parse(body)
+                    console.log(weather);
+                    resp = null;
+                    if (weather.main.temp < 45) {
+                        resp = "Its cold as fuck boi\n"
+                    }
+                    else if(weather.main.temp < 70) {
+                        resp = "What an average day\n"
+                    }
+                    else {
+                        resp = "Hot as fuck outside rn\n"
+                    }
+                    for(i in weather.weather) {
+                        if (weather.weather[i].id >= 200 && weather.weather[i].id < 299) {
+                            resp += "These fucking thunderstorms need to go\n"
+                        }
+                        else if (weather.weather[i].id >= 300 && weather.weather[i] < 399) {
+                            resp += "Its kinda raining outside.  Just enough to be annoying\n"
+                        }
+                        else if (weather.weather[i].id >= 500 && weather.weather[i] < 599) {
+                            resp += "Its pouring outside rn.  Guess I won't be getting lunch\n"
+                        }
+                        else if (weather.weather[i].id >= 600 && weather.weather[i].id < 699) {
+                            resp += "Yeah there's snow outside.  Can't drive through this, see you fine folks tomorrow\n"
+                        }
+                        else if (weather.weather[i].id == 800 ) {
+                            resp += "Would you look at that it's actually a nice day outside\n"
+                        }
+                        else if (weather.weather[i].id < 800 ) {
+                            resp += "Cloudy outside.  Its cool, I don't like the sun anyways\n"
+                        }
+                        else {
+                            resp += "There's some crazy shit going on outside.  Fuck this I'm outta here\n"
+                        }
+                    }
+                    createMessageObject(msg.roomId, resp);
                 }
-                else if (weather.weather[i].id >= 300 && weather.weather[i] < 399) {
-                    resp += "Its kinda raining outside.  Just enough to be annoying\n"
-                }
-                else if (weather.weather[i].id >= 500 && weather.weather[i] < 599) {
-                    resp += "Its pouring outside rn.  Guess I won't be getting lunch\n"
-                }
-                else if (weather.weather[i].id >= 600 && weather.weather[i].id < 699) {
-                    resp += "Yeah there's snow outside.  Can't drive through this, see you fine folks tomorrow\n"
-                }
-                else if (weather.weather[i].id == 800 ) {
-                    resp += "Would you look at that it's actually a nice day outside\n"
-                }
-                else if (weather.weather[i].id < 800 ) {
-                    resp += "Cloudy outside.  Its cool, I don't like the sun anyways\n"
-                }
-                else {
-                    resp += "There's some crazy shit going on outside.  Fuck this I'm outta here\n"
-                }
-            }
-
-            createMessageObject(msg.roomId, resp);
+            });
         }
     
         if(matchWordRegex("be in today", msg.text) || matchWordRegex("in the office", msg.text)) {
