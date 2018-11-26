@@ -149,7 +149,7 @@ module.exports = function createReply(msg) {
     }
 
     if(matchWordRegex("be in today", msg.text) || matchWordRegex("in the office", msg.text)) {
-        x = getRandomInt(6);
+        x = getRandomInt(5);
         console.log(x);
         if( x < 1) {
             hour = "10"
@@ -175,7 +175,11 @@ module.exports = function createReply(msg) {
         }
         else {
             hour = "1"
-            minute = "00"
+            minute = getRandomInt(29);
+            console.log(minute);
+            if (minute == 0) {
+                minute = "00"
+            }
         }
         late = "I'll be in by " + hour + ":" + minute + " hopefully"
         createMessageObject(msg.roomId, late);
