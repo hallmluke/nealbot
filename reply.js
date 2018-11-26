@@ -159,14 +159,14 @@ async function createReply(msg) {
     
         if(matchWordRegex("weather", msg.text)) {
             console.log("weathering the storm");
-            await weather().then((body) => {
+            weather().then((body) => {
                 createMessageObject(msg.roomId, "fucking hell this is not worth the effort");
             }).catch((error) => {
                 createMessageObject(msg.roomId, "fucking hell why did I make this difficult");
             })
         }
     
-        async function weather() {
+        function weather() {
             return new Promise((resolve, reject) => {
                 request(url, function (err, response, body) {
                     if(err){
