@@ -161,7 +161,9 @@ module.exports = function createReply(msg) {
         console.log("weathering the storm");
         await weather().then((body) => {
             console.log(body);
-            createMessageObject.Object(msg.roomId, "fucking hell why did I make this difficult");
+            createMessageObject(msg.roomId, "fucking hell why did I make this difficult");
+        }).catch((error) => {
+            createMessageObject(msg.roomId, "fucking hell this is not worth the effort");
         });
     }
 
