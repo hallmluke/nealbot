@@ -164,7 +164,7 @@ module.exports = function createReply(msg) {
               console.log('error:', error);
             } else {
               console.log("the storm is tamed");
-              createMessageObject(msg.roomId, body);
+              createMessageObject(msg.roomId, "so I got this far but shit's broken");
             }
           }
         );
