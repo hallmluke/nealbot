@@ -1,6 +1,11 @@
 const redditscrape = require('./redditscraper');
 snoowrap = require('snoowrap');
+const request = require('request');
 //const redditscrape = require('./redditscraper');
+
+let apiKey = 'a3f552ad9376d227338f01ccda02d6a8';
+let city = '4744091';
+let url = `http://api.openweathermap.org/data/2.5/weather?id=${city}&units=imperial&appid=${apiKey}`
 
 var messages = [];
 
@@ -150,6 +155,19 @@ module.exports = function createReply(msg) {
 
     if(matchWordRegex("go for lunch", msg.text)) {
         createMessageObject(msg.roomId, "eh I went to cava again anyways");
+    }
+
+    if(matchWordRegex("weather", msg.text)) {
+        console.log("weathering the storm");
+        request(url, function (err, response, body) {
+            if(err){
+              console.log('error:', error);
+            } else {
+              console.log("the storm is tamed");
+              createMessageObject(msg.roomId, body);
+            }
+          }
+        );
     }
 
     if(matchWordRegex("be in today", msg.text) || matchWordRegex("in the office", msg.text)) {
