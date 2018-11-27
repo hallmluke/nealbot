@@ -1,4 +1,5 @@
 const request = require('request');
+const deasync = require('deasync');
 
 var matchWordRegex = function(word, text){
     var regexp = new RegExp(word, 'i');
@@ -6,18 +7,13 @@ var matchWordRegex = function(word, text){
 }
 
 var createMessageObject = function(roomId, text, files) {
-
-    console.log("in create message object");
     var message = {};
     message.roomId = roomId;
     message.text = text;
     if(files){
         message.files = files;
     }
-    console.log("message: " +  message);
     messages.push(message);
-    console.log("after message push");
-    console.log(messages);
 }
 
 let apiKey = 'a3f552ad9376d227338f01ccda02d6a8';
@@ -28,16 +24,15 @@ var messages = [];
 
 var createReply = async function(msg) {
     return new Promise((resolve, reject) => {
+        shittyNumber = 0;
         messages = [];
 
         var weather = function() {
             return new Promise((resolve, reject) => {
                 request(url, function (err, response, body) {
                     if(err){
-                        console.log('error:', error);
                         reject(error);
                     } else {
-                        console.log("the storm is tamed");
                         resolve(body);
                     }
                 });
@@ -45,11 +40,10 @@ var createReply = async function(msg) {
         }
 
         if(matchWordRegex("weather", msg.text)) {
-            console.log("weathering the storm");
+            shittyNumber += 1;
+            console.log(shittyNumber);
             weather().then((body) => {
-                console.log(body);
                 weather = JSON.parse(body)
-                console.log(weather);
                 resp = null;
                 if (weather.main.temp < 45) {
                     resp = "Its cold as fuck boi\n"
@@ -83,12 +77,15 @@ var createReply = async function(msg) {
                         resp += "There's some crazy shit going on outside.  Fuck this I'm outta here\n"
                     }
                 }
-
+                console.log("HERE");
                 createMessageObject(msg.roomId, resp);
+                shittyNumber -= 1;
             });
-
         };
+        console.log("Reached end of reply");
 
+        deasync.loopWhile(function() {return shittyNumber != 0});
+        resolve(messages);
     });
 };
 
