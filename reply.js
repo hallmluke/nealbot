@@ -92,21 +92,6 @@ var createMessageObject = function(roomId, text, files) {
     console.log(messages);
 }
 
-var weather = function() {
-    return new Promise((resolve, reject) => {
-        request(url, function (err, response, body) {
-            if(err){
-                console.log('error:', error);
-                reject(error);
-            } else {
-                console.log("the storm is tamed");
-                resolve(body);
-            }
-        });
-    });
-}
-
-
 var createReply = async function(msg) {
     return new Promise((resolve, reject) => {
         messages = [];
@@ -174,6 +159,20 @@ var createReply = async function(msg) {
     
         if(matchWordRegex("go for lunch", msg.text)) {
             createMessageObject(msg.roomId, "eh I went to cava again anyways");
+        }
+
+        var weather = function() {
+            return new Promise((resolve, reject) => {
+                request(url, function (err, response, body) {
+                    if(err){
+                        console.log('error:', error);
+                        reject(error);
+                    } else {
+                        console.log("the storm is tamed");
+                        resolve(body);
+                    }
+                });
+            });
         }
     
         if(matchWordRegex("weather", msg.text)) {

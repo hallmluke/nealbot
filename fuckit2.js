@@ -5,20 +5,6 @@ var matchWordRegex = function(word, text){
     return regexp.test(text);
 }
 
-var weather = function() {
-    return new Promise((resolve, reject) => {
-        request(url, function (err, response, body) {
-            if(err){
-                console.log('error:', error);
-                reject(error);
-            } else {
-                console.log("the storm is tamed");
-                resolve(body);
-            }
-        });
-    });
-}
-
 var createMessageObject = function(roomId, text, files) {
 
     console.log("in create message object");
@@ -43,6 +29,20 @@ var messages = [];
 var createReply = async function(msg) {
     return new Promise((resolve, reject) => {
         messages = [];
+
+        var weather = function() {
+            return new Promise((resolve, reject) => {
+                request(url, function (err, response, body) {
+                    if(err){
+                        console.log('error:', error);
+                        reject(error);
+                    } else {
+                        console.log("the storm is tamed");
+                        resolve(body);
+                    }
+                });
+            });
+        }
 
         if(matchWordRegex("weather", msg.text)) {
             console.log("weathering the storm");
