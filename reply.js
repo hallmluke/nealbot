@@ -203,6 +203,7 @@ var createReply = async function(msg) {
                     resp = "Hot as fuck outside rn\n"
                 }
                 for(i in weather.weather) {
+                    console.log(weather.weather[i]);
                     if (weather.weather[i].id >= 200 && weather.weather[i].id < 299) {
                         resp += "These fucking thunderstorms need to go\n"
                     }
@@ -218,8 +219,11 @@ var createReply = async function(msg) {
                     else if (weather.weather[i].id == 800 ) {
                         resp += "Would you look at that it's actually a nice day outside\n"
                     }
-                    else if (weather.weather[i].id < 800 ) {
+                    else if (weather.weather[i].id > 800 ) {
                         resp += "Cloudy outside.  Its cool, I don't like the sun anyways\n"
+                    }
+                    else if (weather.weather[i].id <= 700 && weather.weather[i].id < 749) {
+                        resp += "I mean there's some fog or whatever that's not my problem\n"
                     }
                     else {
                         resp += "There's some crazy shit going on outside.  Fuck this I'm outta here\n"
