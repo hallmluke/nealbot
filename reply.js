@@ -189,21 +189,31 @@ var createReply = async function(msg) {
     
         if(matchWordRegex("weather", msg.text)) {
             shittyNumber += 1;
-            console.log(shittyNumber);
             weather().then((body) => {
                 weather = JSON.parse(body)
                 resp = null;
                 if (weather.main.temp < 45) {
-                    resp = "Its cold as fuck boi\n"
+                    resp = "Its cold as fuck boi"
                 }
-                else if(weather.main.temp < 70) {
-                    resp = "What an average day\n"
+                else if(weather.main.temp < 75) {
+                    resp = "What an average day"
                 }
                 else {
-                    resp = "Hot as fuck outside rn\n"
+                    resp = "Hot as fuck outside rn"
                 }
+                resp += "at " + weather.main.temp + " degrees\n"
+
+                if(weather.wind.speed >= 15) {
+                    resp += "Getting pretty windy with speeds up to " + weather.wind.speed + " miles per hour\n"
+                }
+                else {
+                    resp += "Not that windy outside, so I guess that's nice\n"
+                }
+                if(weather.main.humidity > 70) {
+                    resp += "Pretty fucking humid outside\n"
+                }
+                console.log(weather);
                 for(i in weather.weather) {
-                    console.log(weather.weather[i]);
                     if (weather.weather[i].id >= 200 && weather.weather[i].id < 299) {
                         resp += "These fucking thunderstorms need to go\n"
                     }
