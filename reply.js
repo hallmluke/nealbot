@@ -1,6 +1,7 @@
 const redditscrape = require('./redditscraper');
 snoowrap = require('snoowrap');
 const request = require('request');
+const deasync = require('deasync');
 //const redditscrape = require('./redditscraper');
 
 let apiKey = 'a3f552ad9376d227338f01ccda02d6a8';
@@ -488,7 +489,6 @@ var createReply = async function(msg) {
         deasync.loopWhile(function() {return shittyNumber != 0});
         resolve(messages);
     });
-    
-}
+};
 
 module.exports = createReply;
