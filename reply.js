@@ -98,6 +98,12 @@ var createReply = async function(msg) {
         shittyNumber = 0;
         messages = [];
 
+        if(msg.text.length >= 75){
+            shittyNumber += 1;
+            createMessageObject(msg.roomId, "you use lot word.  why use lot word when few word do trick");
+            shittyNumber -= 1;
+        }
+
         if(matchWordRegex("help", msg.text)){
             shittyNumber += 1;
             text = "I respond to the following prompts by way of keyword.  I won't tell you them though, because that'd mean being helpful\n" +
@@ -193,13 +199,13 @@ var createReply = async function(msg) {
                 weather = JSON.parse(body)
                 resp = null;
                 if (weather.main.temp < 45) {
-                    resp = "Its cold as fuck boi"
+                    resp = "Its cold as fuck boi "
                 }
                 else if(weather.main.temp < 75) {
-                    resp = "What an average day"
+                    resp = "Not that hot and not that cold, so I guess that's pretty chill "
                 }
                 else {
-                    resp = "Hot as fuck outside rn"
+                    resp = "Hot as fuck outside rn "
                 }
                 resp += "at " + weather.main.temp + " degrees\n"
 
