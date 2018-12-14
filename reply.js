@@ -238,7 +238,7 @@ var createReply = async function(msg) {
                     else if (weather.weather[i].id > 800 ) {
                         resp += "Cloudy outside.  Its cool, I don't like the sun anyways\n"
                     }
-                    else if (weather.weather[i].id <= 700 && weather.weather[i].id < 749) {
+                    else if (weather.weather[i].id >= 700 && weather.weather[i].id < 749) {
                         resp += "I mean there's some fog or whatever that's not my problem\n"
                     }
                     else {
