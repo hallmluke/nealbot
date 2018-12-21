@@ -223,10 +223,10 @@ var createReply = async function(msg) {
                     if (weather.weather[i].id >= 200 && weather.weather[i].id < 299) {
                         resp += "These fucking thunderstorms need to go\n"
                     }
-                    else if (weather.weather[i].id >= 300 && weather.weather[i] < 399) {
+                    else if (weather.weather[i].id >= 300 && weather.weather[i].id < 399) {
                         resp += "Its kinda raining outside.  Just enough to be annoying\n"
                     }
-                    else if (weather.weather[i].id >= 500 && weather.weather[i] < 599) {
+                    else if (weather.weather[i].id >= 500 && weather.weather[i].id < 599) {
                         resp += "Its pouring outside rn.  Guess I won't be getting lunch\n"
                     }
                     else if (weather.weather[i].id >= 600 && weather.weather[i].id < 699) {
@@ -235,11 +235,11 @@ var createReply = async function(msg) {
                     else if (weather.weather[i].id == 800 ) {
                         resp += "Would you look at that it's actually a nice day outside\n"
                     }
+                    else if (weather.weather[i].id <= 700 && weather.weather[i].id < 749) {
+                        resp += "I mean there's some fog or whatever that's not my problem\n"
+                    }
                     else if (weather.weather[i].id > 800 ) {
                         resp += "Cloudy outside.  Its cool, I don't like the sun anyways\n"
-                    }
-                    else if (weather.weather[i].id >= 700 && weather.weather[i].id < 749) {
-                        resp += "I mean there's some fog or whatever that's not my problem\n"
                     }
                     else {
                         resp += "There's some crazy shit going on outside.  Fuck this I'm outta here\n"
