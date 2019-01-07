@@ -186,7 +186,6 @@ var createReply = async function(msg) {
                         console.log('error:', error);
                         reject(error);
                     } else {
-                        console.log("the storm is tamed");
                         resolve(body);
                     }
                 });
@@ -245,7 +244,6 @@ var createReply = async function(msg) {
                         resp += "There's some crazy shit going on outside.  Fuck this I'm outta here\n"
                     }
                 }
-                console.log("HERE");
                 createMessageObject(msg.roomId, resp);
                 shittyNumber -= 1;
             });
@@ -443,9 +441,34 @@ var createReply = async function(msg) {
             if(Math.random() > .6) {
                 dynamo = dynamo + "f"
             }
-            dynamo = dynamo + "k ask Tom"
+            dynamo = dynamo + "k ask "
+            if(Math.random() > .5) {
+                dynamo = dynamo + "Tom";
+            }
+            else {
+                dynamo = dynamo + "Luke";
+            }
             if(Math.random() > .4) {
                 dynamo = dynamo + " hes our Dynamo"
+                if(Math.random() > .5) {
+                    dynamo = dynamo + " guy"
+                }
+                else {
+                    dynamo = dynamo + " expert"
+                }
+            }
+            createMessageObject(msg.roomId, dynamo);
+            shittyNumber -= 1;
+        }
+        if(matchWordRegex("prepare", msg.text) || matchWordRegex("PREPARE", msg.text) || matchWordRegex("P.R.E.P.A.R.E.", msg.text)) {
+            shittyNumber += 1;
+            dynamo = "id";
+            if(Math.random() > .6) {
+                dynamo = dynamo + "f"
+            }
+            dynamo = dynamo + "k ask Luke"
+            if(Math.random() > .4) {
+                dynamo = dynamo + " hes our P.R.E.P.A.R.E."
                 if(Math.random() > .5) {
                     dynamo = dynamo + " guy"
                 }
