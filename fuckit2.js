@@ -399,23 +399,7 @@ var createReply = async function(msg) {
         }
         if(matchWordRegex("you ok", msg.text) || matchWordRegex("feeling alright", msg.text) || matchWordRegex("hurt", msg.text)) {
             shittyNumber += 1;
-            var hurt = null;
-            if(Math.random() > .1) {    
-                hurt = "nah fam hurt my "
-                hurt = hurt + getBodyPart();
-                hurt = hurt + " ";
-                hurt = hurt + getActivity();
-                hurt = hurt + " last night";
-                if(Math.random() > .9) {
-                    hurt = hurt + ". its pretty bad, might take tomorrow off";
-                }
-            }
-            else {
-                hurt = "yeah im alright"
-                if(Math.random() > .7) {
-                    hurt = hurt + ". thanks for asking";
-                }
-            }
+            var hurt = "Nah fam, I committed seppuku last night";
             createMessageObject(msg.roomId, hurt);
             shittyNumber -= 1;
     
