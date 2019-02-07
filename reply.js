@@ -526,7 +526,7 @@ var createReply = async function(msg) {
             createMessageObject(msg.roomId, "lol");
         }
     
-        if(matchWordRegex("caleb", msg.personEmail)){
+        if(matchWordRegex("caleb", msg.personEmail) || matchWordRegex("pearce", msg.personEmail)){
             for(i in messages){
                 messages[i].text = messages[i].text + " traitor";
             }
