@@ -517,6 +517,9 @@ var createReply = async function(msg) {
         else if(generic > .4){
             createMessageObject(msg.roomId, "stfu");
         }
+        else if (generic > .3){
+            createMessageObject(msg.roomId, "bet");
+        }
     
         if(Math.random() > .95){
             createMessageObject(msg.roomId, "imma take a fat nap");
@@ -526,7 +529,7 @@ var createReply = async function(msg) {
             createMessageObject(msg.roomId, "lol");
         }
     
-        if(matchWordRegex("caleb", msg.personEmail) || matchWordRegex("pearce", msg.personEmail)){
+        if(matchWordRegex("caleb", msg.personEmail)){
             for(i in messages){
                 messages[i].text = messages[i].text + " traitor";
             }
