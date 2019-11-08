@@ -50,14 +50,14 @@ var getBodyPart = function() {
 }
 
 var getActivity = function() {
-    int = getRandomInt(6);
+    int = getRandomInt(7);
     activity = null;
     switch(int) {
         case 0:
             part = "at kickball"
             break;
         case 1:
-            part = "drinking"
+            part = "at the bar"
             break;
         case 2:
             part = "at work"
@@ -68,6 +68,9 @@ var getActivity = function() {
         case 4:
             part = "playing Fortnite"
             break;
+            case 4:
+                part = "playing League"
+                break;
         case 5:
             part = "committing seppuku"
             break;
@@ -109,7 +112,7 @@ var createReply = async function(msg) {
 
         if(matchWordRegex("help", msg.text)){
             shittyNumber += 1;
-            text = "I respond to the following prompts by way of keyword.  I won't tell you them though, because that'd mean being helpful\n" +
+            text = "I respond to the following prompts by way of keyword.  I won't tell you them though, because that'd mean being helpful and I'm Neal\n" +
             "Banks asking me about my stories\n" +
             "My favorite football team, the Saints\n" +
             "My casual alcoholism\n" +
@@ -123,42 +126,6 @@ var createReply = async function(msg) {
             createMessageObject(msg.roomId, text);
             shittyNumber -= 1;
     
-        }
-        if(matchWordRegex("patrick_walter", msg.personEmail)) {
-            shittyNumber += 1;
-            if (matchWordRegex("stfu", msg.text) || matchWordRegex("shut the fuck up", msg.text) || matchWordRegex("shut up", msg.text)) {
-                createMessageObject(msg.roomId, "woah Walter, calm down.  Let's keep the language to a minimum");
-            }
-            if (matchWordRegex("who are you", msg.text) || matchWordRegex("what is this", msg.text)) {
-                createMessageObject(msg.roomId, "I'm you but without the beard");
-            }
-            if(matchWordRegex("why is this a thing", msg.text)) {
-                createMessageObject(msg.roomId, "It's just a prank bro.");
-            }
-            if(matchWordRegex("fake", msg.text) || matchWordRegex("imposter", msg.text) || matchWordRegex("copy", msg.text)){
-                createMessageObject(msg.roomId, "You are the fake, Walter. I am more real than you will ever be.");
-            }
-            shittyNumber -= 1;
-        }
-        if(matchWordRegex("banks", msg.personEmail)) {
-            shittyNumber += 1;
-           if (matchWordRegex("status", msg.text) || matchWordRegex("story", msg.text) || matchWordRegex("stories", msg.text)) {
-               text = "Those stories should be done by the end of the day";
-               createMessageObject(msg.roomId, text);
-           }
-           if (matchWordRegex("new job", msg.text)) {
-                text = "Whatever. I've had a clearance since I was 16. I'll be fine.";
-                createMessageObject(msg.roomId, text);
-           }
-           if (matchWordRegex("are you done", msg.text)) {
-               text = "Not yet. @ me if you fine fellows need anything. I'm just going to be knocking out stories.";
-               createMessageObject(msg.roomId, text);
-           }
-           if (matchWordRegex("document", msg.text)) {
-               text = "I've got it in a word doc, Ill move it over once Im done"
-               createMessageObject(msg.roomId, text);
-           }
-           shittyNumber -= 1;
         }
         if(matchWordRegex("how much did you", msg.text)){
             shittyNumber += 1;
@@ -201,13 +168,13 @@ var createReply = async function(msg) {
                 weather = JSON.parse(body)
                 resp = null;
                 if (weather.main.temp < 45) {
-                    resp = "Its cold as fuck boi "
+                    resp = "It's cold outside "
                 }
                 else if(weather.main.temp < 75) {
                     resp = "Not that hot and not that cold, so I guess that's pretty chill "
                 }
                 else {
-                    resp = "Hot as fuck outside rn "
+                    resp = "Pretty lit rn "
                 }
                 resp += "at " + weather.main.temp + " degrees\n"
 
@@ -218,12 +185,12 @@ var createReply = async function(msg) {
                     resp += "Not that windy outside, so I guess that's nice\n"
                 }
                 if(weather.main.humidity > 70) {
-                    resp += "Pretty fucking humid outside\n"
+                    resp += "Rather humid outside\n"
                 }
                 console.log(weather);
                 for(i in weather.weather) {
                     if (weather.weather[i].id >= 200 && weather.weather[i].id < 299) {
-                        resp += "These fucking thunderstorms need to go\n"
+                        resp += "These thunderstorms need to go\n"
                     }
                     else if (weather.weather[i].id >= 300 && weather.weather[i].id < 399) {
                         resp += "Its kinda raining outside.  Just enough to be annoying\n"
@@ -244,7 +211,7 @@ var createReply = async function(msg) {
                         resp += "Cloudy outside.  Its cool, I don't like the sun anyways\n"
                     }
                     else {
-                        resp += "There's some crazy shit going on outside.  Fuck this I'm outta here\n"
+                        resp += "I'm outta here\n"
                     }
                 }
                 createMessageObject(msg.roomId, resp);
@@ -306,13 +273,13 @@ var createReply = async function(msg) {
     
         if(matchWordRegex("saints", msg.text)){
             shittyNumber += 1;
-            createMessageObject(msg.roomId, "fuck the saints");
+            createMessageObject(msg.roomId, "I disapprove of the saints");
             shittyNumber -= 1;
         }
     
         if(matchWordRegex("packers", msg.text)){
             shittyNumber += 1;
-            createMessageObject(msg.roomId, "packers suck");
+            createMessageObject(msg.roomId, "Not a packers fan");
             shittyNumber -= 1;
         }
     
@@ -326,15 +293,9 @@ var createReply = async function(msg) {
             shittyNumber -= 1;
         }
     
-        if(matchWordRegex("bills", msg.text)){
-            shittyNumber += 1;
-            createMessageObject(msg.roomId, "breaking tables bitches", ['https://media.giphy.com/media/l0CPbwUg1rgOmMcb6/giphy.gif']);
-            shittyNumber -= 1;
-        }
-    
         if(matchWordRegex("ice cream", msg.text)){
             shittyNumber += 1;
-            text = "when the fuck did we get ice cream?";
+            text = "when did we get ice cream?";
             createMessageObject(msg.roomId, text);
             shittyNumber -= 1;
         }
@@ -342,9 +303,6 @@ var createReply = async function(msg) {
         if(matchWordRegex("kickball", msg.text)){
             shittyNumber += 1;
             createMessageObject(msg.roomId, "yo luke when is the game tonight");
-            if(Math.random() > .5){
-                createMessageObject(msg.roomId, "bout to do hella jello shots");
-            }
             shittyNumber -= 1;
         }
     
@@ -356,7 +314,7 @@ var createReply = async function(msg) {
     
         if(matchWordRegex("fortnite", msg.text)){
             shittyNumber += 1;
-            createMessageObject(msg.roomId, "orange justice up in this bitch", ['https://media.giphy.com/media/8mkylSWajoh7QBCz5j/giphy.gif']);
+            createMessageObject(msg.roomId, "orange justice fam", ['https://media.giphy.com/media/8mkylSWajoh7QBCz5j/giphy.gif']);
             shittyNumber -= 1;
         }
     
@@ -365,17 +323,7 @@ var createReply = async function(msg) {
             console.log(link);
             createMessageObject(msg.roomId, redditscrape());
         }*/
-    
-        if(matchWordRegex("pearce_thomas@bah.com", msg.personEmail)){
-            shittyNumber += 1;
-            var stfu = "Tom shut ";
-            if(Math.random() > .75){
-                stfu = stfu + "the fuck "
-            }
-            stfu = stfu + "up!"
-            createMessageObject(msg.roomId, stfu);
-            shittyNumber -= 1;
-        }
+
         if(matchWordRegex("how about", msg.text) || matchWordRegex("want to", msg.text) || matchWordRegex("how bout")) {
             shittyNumber += 1;
             var bet = "aight";
@@ -463,25 +411,6 @@ var createReply = async function(msg) {
             createMessageObject(msg.roomId, dynamo);
             shittyNumber -= 1;
         }
-        if(matchWordRegex("prepare", msg.text) || matchWordRegex("PREPARE", msg.text) || matchWordRegex("P.R.E.P.A.R.E.", msg.text)) {
-            shittyNumber += 1;
-            dynamo = "id";
-            if(Math.random() > .6) {
-                dynamo = dynamo + "f"
-            }
-            dynamo = dynamo + "k ask Luke"
-            if(Math.random() > .4) {
-                dynamo = dynamo + " hes our P.R.E.P.A.R.E."
-                if(Math.random() > .5) {
-                    dynamo = dynamo + " guy"
-                }
-                else {
-                    dynamo = dynamo + " expert"
-                }
-            }
-            createMessageObject(msg.roomId, dynamo);
-            shittyNumber -= 1;
-        }
         if(matchWordRegex("how do", msg.text)){
             shittyNumber += 1;
             var idk = "id";
@@ -489,9 +418,6 @@ var createReply = async function(msg) {
                 idk + idk + "f";
             }
             idk = idk + "k, ask Sam";
-            if(Math.random > .3){
-                idk = idk + " or some shit";
-            }
             createMessageObject(msg.roomId, idk);
             shittyNumber -= 1;
         }
@@ -511,12 +437,6 @@ var createReply = async function(msg) {
         else if(generic > .6){
             createMessageObject(msg.roomId, "yeet");
         }
-        else if(generic > .5){
-            createMessageObject(msg.roomId, "shut the fuck up");
-        }
-        else if(generic > .4){
-            createMessageObject(msg.roomId, "stfu");
-        }
         else if (generic > .3){
             createMessageObject(msg.roomId, "bet");
         }
@@ -528,12 +448,7 @@ var createReply = async function(msg) {
         if(messages.length == 0){
             createMessageObject(msg.roomId, "lol");
         }
-    
-        if(matchWordRegex("caleb", msg.personEmail)){
-            for(i in messages){
-                messages[i].text = messages[i].text + " traitor";
-            }
-        }
+
         console.log("Reached end of reply");
         deasync.loopWhile(function() {return shittyNumber != 0});
         resolve(messages);
