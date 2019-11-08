@@ -50,7 +50,7 @@ var getBodyPart = function() {
 }
 
 var getActivity = function() {
-    int = getRandomInt(7);
+    int = getRandomInt(6);
     activity = null;
     switch(int) {
         case 0:
@@ -68,11 +68,8 @@ var getActivity = function() {
         case 4:
             part = "playing Fortnite"
             break;
-            case 4:
-                part = "playing League"
-                break;
         case 5:
-            part = "committing seppuku"
+            part = "playing League"
             break;
         default:
             part = "playing soccer"
