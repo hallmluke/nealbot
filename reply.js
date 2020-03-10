@@ -71,14 +71,17 @@ var getActivity = function() {
         case 5:
             part = "playing League"
             break;
-        default:
+        case 6:
             part = "playing soccer"
+            break;
+        default:
+            part = "breaking the codebase"
     }
     return part;
 }
 
 var getRandomInt = function(max) {
-    return Math.floor(Math.random() * Math.floor(max));
+    return Math.floor(Math.random() * (max+1));
 }
 
 var createMessageObject = function(roomId, text, files) {
