@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/hallmluke/nealbot#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "deasync": "^0.1.14",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "node-html-parser": "^1.1.11",
     "node-schedule": "^1.3.0",
     "node-sparky": "^4.6.0",
